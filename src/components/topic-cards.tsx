@@ -16,13 +16,13 @@ export function TopicCards({ compact = false }: { compact?: boolean }) {
           <Link
             href={`/guide/${section.slug}`}
             className={cn(
-              "group flex h-full flex-col rounded-2xl border border-border bg-card shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
+              "group flex h-full flex-col rounded-2xl border border-border bg-card text-foreground shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none visited:border-border/80 visited:text-muted-foreground",
               compact ? "px-4 py-3" : "p-5"
             )}
           >
             <span
               className={cn(
-                "font-heading leading-snug font-semibold tracking-tight text-foreground group-hover:text-primary",
+                "font-heading leading-snug font-semibold tracking-tight group-hover:text-primary",
                 compact ? "text-base" : "text-lg"
               )}
             >
@@ -44,3 +44,4 @@ export function TopicCards({ compact = false }: { compact?: boolean }) {
     </ul>
   );
 }
+

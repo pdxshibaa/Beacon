@@ -29,6 +29,14 @@ export function ContentsNav({
             Start here
           </Link>
         </li>
+        <li>
+          <Link
+            href="/about"
+            className="block rounded-md px-2 py-1 leading-snug text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            About this guide
+          </Link>
+        </li>
         {topicSections.map((section) => {
           const href = `/guide/${section.slug}`;
           const active = section.slug === currentSlug;
@@ -40,7 +48,7 @@ export function ContentsNav({
                   "block rounded-md px-2 py-1 leading-snug transition-colors hover:bg-muted hover:text-foreground",
                   active
                     ? "bg-muted font-medium text-foreground"
-                    : "text-muted-foreground"
+                    : "text-foreground/80 visited:text-muted-foreground"
                 )}
                 aria-current={active ? "page" : undefined}
               >

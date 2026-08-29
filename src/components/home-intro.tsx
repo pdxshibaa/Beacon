@@ -1,21 +1,9 @@
 import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { SearchBox } from "@/components/search-box";
 import { TopicCards } from "@/components/topic-cards";
-import { getIntroContent } from "@/lib/intro";
 import { getSection, paper } from "@/lib/paper";
-import { cn } from "@/lib/utils";
-
-function Html({
-  html,
-  className,
-}: {
-  html: string;
-  className?: string;
-}) {
-  return <p className={className} dangerouslySetInnerHTML={{ __html: html }} />;
-}
 
 const START_HERE = [
   {
@@ -37,8 +25,6 @@ const START_HERE = [
 ] as const;
 
 export function HomeIntro() {
-  const intro = getIntroContent();
-
   return (
     <div className="w-full">
       <div className="border-b border-primary/20 bg-primary text-primary-foreground">
@@ -62,20 +48,24 @@ export function HomeIntro() {
             {paper.eyebrow}
           </p>
           <h1 className="mt-2 max-w-2xl font-heading text-3xl leading-[1.15] tracking-tight text-foreground sm:text-4xl">
-            Our college-age young adult is having a mental health crisis
+            What to do in a college-age mental health crisis
           </h1>
           <p className="mt-3 max-w-2xl text-foreground/80">
-            Whether you’re new to mental health crises or have been navigating the system for years, this site offers a roadmap of key resources and considerations for supporting a young adult, ages 18–25.
-            <br></br>Families, friends, and others who are supporting a young adult: choose a topic below, search for what you need, or explore the references to learn more.  
+            Whether you’re new to mental health crises or have been navigating
+            the system for years, this site offers a roadmap of key resources
+            and considerations for supporting a young adult, ages 18–25.
+            Families, friends, and others who are supporting a young adult:
+            choose a topic, search for what you need, or explore the references
+            to learn more.
           </p>
           <p className="mt-3">
-  <Link
-    href="/about"
-    className="text-sm font-small text-primary text-right underline-offset-4 hover:underline"
-  >
-    Read more about this guide
-  </Link>
-</p>
+            <Link
+              href="/about"
+              className="text-sm font-medium text-primary underline-offset-4 hover:underline"
+            >
+              Read more about this guide
+            </Link>
+          </p>
           <div className="mt-6 max-w-xl">
             <SearchBox size="hero" />
           </div>
@@ -92,22 +82,13 @@ export function HomeIntro() {
             if (!section) {
               return null;
             }
-            const isEmergency = item.slug === "emergency-services";
             return (
               <li key={item.slug}>
                 <Link
                   href={`/guide/${item.slug}`}
-                  className={cn(
-                    "flex h-full flex-col rounded-2xl border p-4 transition-all hover:-translate-y-0.5 hover:shadow-md",
-                    isEmergency
-                      ? "border-primary/40 bg-card"
-                      : "border-border bg-card"
-                  )}
+                  className="flex h-full flex-col rounded-2xl border border-border bg-card p-4 text-foreground transition-all hover:-translate-y-0.5 hover:shadow-md visited:border-border/80 visited:text-muted-foreground"
                 >
-                  <span className="inline-flex items-center gap-2 font-heading text-lg font-semibold tracking-tight">
-                    {isEmergency ? (
-                      <Phone className="size-4 text-primary" aria-hidden />
-                    ) : null}
+                  <span className="font-heading text-lg font-semibold tracking-tight">
                     {section.title}
                   </span>
                   <span className="mt-1 text-sm text-muted-foreground">
@@ -131,39 +112,6 @@ export function HomeIntro() {
           <TopicCards compact />
         </div>
       </section>
-
-      {intro ? (
-        <section className="border-t border-border/70 bg-card/50">
-          <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-            {intro.disclaimerHtml ? (
-              <Html
-                html={intro.disclaimerHtml}
-                className="text-sm text-muted-foreground"
-              />
-            ) : null}
-            <details className="mt-4 rounded-2xl border border-border bg-background px-4 py-3">
-              <summary className="cursor-pointer text-sm font-medium">
-                About this guide
-              </summary>
-              <div className="mt-4 space-y-4 text-sm leading-relaxed text-foreground/90">
-                <Html html={intro.leadHtml} />
-                <p>{intro.factorLead}</p>
-                <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
-                  {intro.factors.map((factor) => (
-                    <li key={factor.label}>{factor.text}</li>
-                  ))}
-                </ul>
-                <Html html={intro.purposeHtml} />
-                <Html html={intro.sourceHtml} />
-                <Html html={intro.crisisHtml} />
-                <Html html={intro.scopeHtml} />
-                <Html html={intro.limitedHtml} />
-                <p className="text-muted-foreground">{paper.authors}</p>
-              </div>
-            </details>
-          </div>
-        </section>
-      ) : null}
     </div>
   );
 }
