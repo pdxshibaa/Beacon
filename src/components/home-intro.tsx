@@ -3,9 +3,8 @@ import { ArrowRight, Phone } from "lucide-react";
 
 import { SearchBox } from "@/components/search-box";
 import { TopicCards } from "@/components/topic-cards";
-import { buttonVariants } from "@/components/ui/button";
 import { getIntroContent } from "@/lib/intro";
-import { paper } from "@/lib/paper";
+import { getSection, paper } from "@/lib/paper";
 import { cn } from "@/lib/utils";
 
 function Html({
@@ -18,147 +17,145 @@ function Html({
   return <p className={className} dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
+const START_HERE = [
+  {
+    slug: "emergency-services",
+    hint: "911, 988, and local response",
+  },
+  {
+    slug: "warning-signs",
+    hint: "What to watch for, and outpatient first",
+  },
+  {
+    slug: "hospitalization",
+    hint: "ER, admission, and what families can do",
+  },
+  {
+    slug: "system-constraints",
+    hint: "HIPAA, FERPA, and what you can still share",
+  },
+] as const;
+
 export function HomeIntro() {
   const intro = getIntroContent();
 
   return (
     <div className="w-full">
+      <div className="border-b border-primary/20 bg-primary text-primary-foreground">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <p className="text-sm font-medium">
+            If someone is not safe right now
+          </p>
+          <Link
+            href="/guide/emergency-services"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold underline-offset-4 hover:underline"
+          >
+            Open emergency services
+            <ArrowRight className="size-4" />
+          </Link>
+        </div>
+      </div>
+
       <section className="home-hero border-b border-border/70">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
           <p className="text-sm font-medium tracking-wide text-primary uppercase">
             {paper.eyebrow}
           </p>
-          <h1 className="mt-3 max-w-3xl font-heading text-4xl leading-[1.12] tracking-tight text-foreground sm:text-5xl">
-            Recognizing and responding to a mental health crisis
+          <h1 className="mt-2 max-w-2xl font-heading text-3xl leading-[1.15] tracking-tight text-foreground sm:text-4xl">
+            What to do in a college-age mental health crisis
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-foreground/80 sm:text-xl">
-            {paper.subtitle}
+          <p className="mt-3 max-w-xl text-foreground/80">
+            For parents and caregivers of young adults, roughly ages 18–25.
+            Open a topic. You do not have to read this in order.
           </p>
-          {intro ? (
-            <Html
-              html={intro.leadHtml}
-              className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/85 sm:text-lg"
-            />
-          ) : null}
-          <div className="mt-8 max-w-xl">
+          <div className="mt-6 max-w-xl">
             <SearchBox size="hero" />
           </div>
-          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Link
-              href="/guide/emergency-services"
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "h-11 justify-center px-4 no-underline"
-              )}
-            >
-              <Phone className="size-4" />
-              If someone is not safe
-            </Link>
-            <Link
-              href="#topics"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "h-11 justify-center bg-card/80 px-4 no-underline"
-              )}
-            >
-              Browse topics
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
-          <p className="mt-8 max-w-2xl text-sm text-muted-foreground">
-            {paper.authors}
-          </p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+        <h2 className="font-heading text-xl tracking-tight text-foreground sm:text-2xl">
+          Start here
+        </h2>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+          {START_HERE.map((item) => {
+            const section = getSection(item.slug);
+            if (!section) {
+              return null;
+            }
+            const isEmergency = item.slug === "emergency-services";
+            return (
+              <li key={item.slug}>
+                <Link
+                  href={`/guide/${item.slug}`}
+                  className={cn(
+                    "flex h-full flex-col rounded-2xl border p-4 transition-all hover:-translate-y-0.5 hover:shadow-md",
+                    isEmergency
+                      ? "border-primary/40 bg-card"
+                      : "border-border bg-card"
+                  )}
+                >
+                  <span className="inline-flex items-center gap-2 font-heading text-lg font-semibold tracking-tight">
+                    {isEmergency ? (
+                      <Phone className="size-4 text-primary" aria-hidden />
+                    ) : null}
+                    {section.title}
+                  </span>
+                  <span className="mt-1 text-sm text-muted-foreground">
+                    {item.hint}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
+      <section
+        id="topics"
+        className="mx-auto max-w-6xl scroll-mt-8 px-4 pb-10 sm:px-6 sm:pb-12"
+      >
+        <h2 className="font-heading text-xl tracking-tight text-foreground sm:text-2xl">
+          All topics
+        </h2>
+        <div className="mt-4">
+          <TopicCards compact />
         </div>
       </section>
 
       {intro ? (
-        <>
-          <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
-            <h2 className="font-heading text-2xl tracking-tight text-foreground sm:text-3xl">
-              Why this is hard
-            </h2>
-            <p className="mt-2 max-w-2xl text-muted-foreground">
-              {intro.factorLead}
-            </p>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {intro.factors.map((factor) => {
-                const Icon = factor.icon;
-                return (
-                  <li
-                    key={factor.label}
-                    className="rounded-2xl border border-border bg-card p-4 shadow-sm"
-                  >
-                    <Icon className="size-5 text-primary" aria-hidden />
-                    <p className="mt-3 font-heading text-base font-semibold tracking-tight">
-                      {factor.label}
-                    </p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {factor.text}
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
-
-          <section className="border-y border-border/70 bg-card/60">
-            <div className="mx-auto grid max-w-6xl gap-6 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-10">
-              <div className="space-y-4 text-base leading-relaxed text-foreground/90">
-                <h2 className="font-heading text-2xl tracking-tight text-foreground sm:text-3xl">
-                  Who this is for
-                </h2>
+        <section className="border-t border-border/70 bg-card/50">
+          <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+            {intro.disclaimerHtml ? (
+              <Html
+                html={intro.disclaimerHtml}
+                className="text-sm text-muted-foreground"
+              />
+            ) : null}
+            <details className="mt-4 rounded-2xl border border-border bg-background px-4 py-3">
+              <summary className="cursor-pointer text-sm font-medium">
+                About this guide
+              </summary>
+              <div className="mt-4 space-y-4 text-sm leading-relaxed text-foreground/90">
+                <Html html={intro.leadHtml} />
+                <p>{intro.factorLead}</p>
+                <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
+                  {intro.factors.map((factor) => (
+                    <li key={factor.label}>{factor.text}</li>
+                  ))}
+                </ul>
                 <Html html={intro.purposeHtml} />
                 <Html html={intro.sourceHtml} />
-                <Html
-                  html={intro.scopeHtml}
-                  className="text-muted-foreground"
-                />
+                <Html html={intro.crisisHtml} />
+                <Html html={intro.scopeHtml} />
+                <Html html={intro.limitedHtml} />
+                <p className="text-muted-foreground">{paper.authors}</p>
               </div>
-              <aside className="space-y-4">
-                <div className="rounded-2xl border border-primary/20 bg-background p-5 shadow-sm">
-                  <p className="text-xs font-medium tracking-wide text-primary uppercase">
-                    What we mean by a crisis
-                  </p>
-                  <Html
-                    html={intro.crisisHtml}
-                    className="mt-3 text-sm leading-relaxed sm:text-base"
-                  />
-                </div>
-                <div className="rounded-2xl border border-border bg-background p-5 shadow-sm">
-                  <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-                    Look for this mark
-                  </p>
-                  <Html
-                    html={intro.limitedHtml}
-                    className="mt-3 text-sm leading-relaxed sm:text-base"
-                  />
-                </div>
-              </aside>
-            </div>
-          </section>
-        </>
+            </details>
+          </div>
+        </section>
       ) : null}
-
-      <section
-        id="topics"
-        className="mx-auto max-w-6xl scroll-mt-8 px-4 py-12 sm:px-6 sm:py-16"
-      >
-        <h2 className="font-heading text-2xl tracking-tight text-foreground sm:text-3xl">
-          Topics
-        </h2>
-        <p className="mt-2 max-w-2xl text-muted-foreground">
-          Open a topic when you need it. You do not have to read this in order.
-        </p>
-        <div className="mt-6">
-          <TopicCards />
-        </div>
-        {intro ? (
-          <Html
-            html={intro.disclaimerHtml}
-            className="mt-10 max-w-3xl rounded-2xl border border-border bg-muted/50 px-4 py-3 text-sm text-muted-foreground"
-          />
-        ) : null}
-      </section>
     </div>
   );
 }
