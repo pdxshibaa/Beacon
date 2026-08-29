@@ -62,10 +62,10 @@ export function HomeIntro() {
             {paper.eyebrow}
           </p>
           <h1 className="mt-2 max-w-2xl font-heading text-3xl leading-[1.15] tracking-tight text-foreground sm:text-4xl">
-            What to do in a college-age mental health crisis
+            What To Do - My college-age young adult is having a mental health crisis
           </h1>
           <p className="mt-3 max-w-xl text-foreground/80">
-            For parents and caregivers of young adults, roughly ages 18–25.
+            For families, friends, and other support people, whose young adult is roughly ages 18–25.
             Open a topic. You do not have to read this in order.
           </p>
           <div className="mt-6 max-w-xl">
