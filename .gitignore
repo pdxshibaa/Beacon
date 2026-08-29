@@ -46,3 +46,6 @@ next-env.d.ts
 # conversion scratch from the Word file
 /content/source.html
 /content/media/
+
+# background info
+.cursor/
