@@ -62,12 +62,20 @@ export function HomeIntro() {
             {paper.eyebrow}
           </p>
           <h1 className="mt-2 max-w-2xl font-heading text-3xl leading-[1.15] tracking-tight text-foreground sm:text-4xl">
-            What To Do - My college-age young adult is having a mental health crisis
+            Our college-age young adult is having a mental health crisis
           </h1>
-          <p className="mt-3 max-w-xl text-foreground/80">
-            For families, friends, and other support people, whose young adult is roughly ages 18–25.
-            Open a topic. You do not have to read this in order.
+          <p className="mt-3 max-w-2xl text-foreground/80">
+            Whether you’re new to mental health crises or have been navigating the system for years, this site offers a roadmap of key resources and considerations for supporting a young adult, ages 18–25.
+            <br></br>Families, friends, and others who are supporting a young adult: choose a topic below, search for what you need, or explore the references to learn more.  
           </p>
+          <p className="mt-3">
+  <Link
+    href="/about"
+    className="text-sm font-small text-primary text-right underline-offset-4 hover:underline"
+  >
+    Read more about this guide
+  </Link>
+</p>
           <div className="mt-6 max-w-xl">
             <SearchBox size="hero" />
           </div>
