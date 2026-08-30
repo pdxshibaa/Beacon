@@ -268,6 +268,25 @@
   font-weight: 600;
 }
 
+.guide-split {
+  display: grid;
+  align-items: start;
+  gap: 1.75rem;
+  margin-top: 0.75rem;
+}
+
+@media (min-width: 48rem) {
+  .guide-split {
+    margin-top: 1.25rem;
+    grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
+  }
+}
+
+.guide-split .paper-body th,
+.guide-split .paper-body td {
+  min-width: 0;
+}
+
 .paper-body .limited-engagement {
   display: inline;
   padding: 0.05em 0.35em;

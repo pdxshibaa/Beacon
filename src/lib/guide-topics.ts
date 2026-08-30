@@ -252,6 +252,28 @@ export function getCaregiverWellbeingLayout(html: string) {
   return { introHtml, topics };
 }
 
+export function getWarningSignsLayout(html: string) {
+  const { introHtml, blocks } = splitByHeading(html, "h4");
+  const signs = blocks.find((block) =>
+    /^Warning Signs$/i.test(htmlHeadingText(block.headingHtml).trim())
+  );
+  const early = blocks.find((block) =>
+    /^Early Support$/i.test(htmlHeadingText(block.headingHtml).trim())
+  );
+
+  return {
+    introHtml,
+    signs: signs ? fullBodyTopic(signs) : null,
+    earlySupport: early
+      ? {
+          id: htmlHeadingId(early.headingHtml) ?? "early-support",
+          title: htmlHeadingText(early.headingHtml).trim(),
+          bodyHtml: early.bodyHtml,
+        }
+      : null,
+  };
+}
+
 function topicFromBlock(
   block: { headingHtml: string; bodyHtml: string },
   nestedTag?: "h5"

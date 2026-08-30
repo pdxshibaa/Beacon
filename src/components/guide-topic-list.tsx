@@ -45,7 +45,7 @@ function TopicGlance({
           className={cn(
             "paper-body !mt-2 leading-relaxed [&_p:last-child]:mb-0 [&_li:last-child]:mb-0",
             spacious
-              ? "text-[1.0625rem] [&_li]:mb-3"
+              ? "text-[1.0625rem] [&_li]:mb-3 [&_h5:first-child]:mt-0 [&_h5]:mt-5 [&_ul:last-child]:mb-0 [&_h5+ul_li]:mb-1"
               : "text-sm"
           )}
           dangerouslySetInnerHTML={{ __html: topic.bodyHtml }}
