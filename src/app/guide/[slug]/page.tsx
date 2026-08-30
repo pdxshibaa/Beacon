@@ -49,7 +49,7 @@ export default async function GuideSectionPage({
   }
   const { previous, next } = getNeighbors(slug);
   const topicSplit = CARD_TOPIC_SLUGS.has(section.slug)
-    ? splitGuideTopics(section.html)
+    ? splitGuideTopics(section.html, section.slug)
     : null;
 
   return (

@@ -3,6 +3,7 @@ import { htmlHeadingId, htmlHeadingText, htmlToText } from "@/lib/html-text";
 export const CARD_TOPIC_SLUGS = new Set([
   "emergency-services",
   "continuing-care",
+  "system-constraints",
 ]);
 
 export type GuideTopic = {
@@ -10,6 +11,7 @@ export type GuideTopic = {
   title: string;
   bodyHtml: string;
   preview: string;
+  children?: GuideTopic[];
 };
 
 export type SplitGuideHtml = {
@@ -39,38 +41,97 @@ function restAfterPreview(bodyHtml: string, preview: string): string {
   return `${open}${space}${afterPreview}`;
 }
 
-export function splitGuideTopics(html: string): SplitGuideHtml {
+function splitByHeading(html: string, tag: "h4" | "h5") {
   const parts = html
-    .split(/(?=<h4\b)/i)
+    .split(new RegExp(`(?=<${tag}\\b)`, "i"))
     .map((part) => part.trim())
     .filter(Boolean);
-
   const introParts: string[] = [];
-  const topics: GuideTopic[] = [];
+  const blocks: { headingHtml: string; bodyHtml: string }[] = [];
+  const headingRe = new RegExp(`^<${tag}\\b[^>]*>[\\s\\S]*?</${tag}>`, "i");
 
   for (const part of parts) {
-    if (!/^<h4\b/i.test(part)) {
+    if (!new RegExp(`^<${tag}\\b`, "i").test(part)) {
       introParts.push(part);
       continue;
     }
-
-    const headingMatch = part.match(/^<h4\b[^>]*>[\s\S]*?<\/h4>/i);
+    const headingMatch = part.match(headingRe);
     const headingHtml = headingMatch?.[0] ?? "";
-    const fullBody = part.slice(headingHtml.length).trim();
-    const title = htmlHeadingText(headingHtml);
-    const id = htmlHeadingId(headingHtml) ?? title;
-    const preview = leadSentence(fullBody);
-
-    topics.push({
-      id,
-      title,
-      bodyHtml: restAfterPreview(fullBody, preview),
-      preview,
+    blocks.push({
+      headingHtml,
+      bodyHtml: part.slice(headingHtml.length).trim(),
     });
   }
 
+  return { introHtml: introParts.join("\n"), blocks };
+}
+
+function topicFromBlock(
+  block: { headingHtml: string; bodyHtml: string },
+  nestedTag?: "h5"
+): GuideTopic {
+  const title = htmlHeadingText(block.headingHtml);
+  const id = htmlHeadingId(block.headingHtml) ?? title;
+
+  if (nestedTag) {
+    const nested = splitByHeading(block.bodyHtml, nestedTag);
+    if (nested.blocks.length > 0) {
+      const preview = leadSentence(nested.introHtml);
+      return {
+        id,
+        title,
+        preview,
+        bodyHtml: restAfterPreview(nested.introHtml, preview),
+        children: nested.blocks.map((child) => topicFromBlock(child)),
+      };
+    }
+  }
+
+  const preview = leadSentence(block.bodyHtml);
   return {
-    introHtml: introParts.join("\n"),
-    topics,
+    id,
+    title,
+    preview,
+    bodyHtml: restAfterPreview(block.bodyHtml, preview),
   };
+}
+
+function applyPageOptions(topics: GuideTopic[], slug: string): GuideTopic[] {
+  if (slug !== "system-constraints") {
+    return topics;
+  }
+
+  return topics.map((topic) => {
+    const title = /^Hospitalization$/i.test(topic.title)
+      ? "Hospitalization (voluntary/involuntary)"
+      : topic.title;
+
+    if (!topic.children?.length || !/^Privacy$/i.test(topic.title)) {
+      return { ...topic, title };
+    }
+
+    const hipaa = topic.children.find((child) => /^HIPAA$/i.test(child.title));
+    const ferpa = topic.children.find((child) => /^FERPA$/i.test(child.title));
+    const others = topic.children.filter(
+      (child) => child !== hipaa && child !== ferpa
+    );
+
+    return {
+      ...topic,
+      title,
+      children: [hipaa, ferpa, ...others].filter(
+        (child): child is GuideTopic => Boolean(child)
+      ),
+    };
+  });
+}
+
+export function splitGuideTopics(html: string, slug?: string): SplitGuideHtml {
+  const { introHtml, blocks } = splitByHeading(html, "h4");
+  const topics = applyPageOptions(
+    blocks.map((block) => topicFromBlock(block, "h5")),
+    slug ?? ""
+  );
+
+  return { introHtml, topics };
 }
