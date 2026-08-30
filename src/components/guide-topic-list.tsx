@@ -6,6 +6,25 @@ import { ChevronDown } from "lucide-react";
 import type { GuideTopic } from "@/lib/guide-topics";
 import { cn } from "@/lib/utils";
 
+function TopicGlance({ topic }: { topic: GuideTopic }) {
+  return (
+    <section
+      id={topic.id}
+      className="scroll-mt-8 rounded-2xl border border-border bg-card px-4 py-4 shadow-sm sm:px-5"
+    >
+      <h2 className="font-heading text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+        {topic.title}
+      </h2>
+      {topic.bodyHtml ? (
+        <div
+          className="paper-body !mt-2 text-sm leading-relaxed [&_p:last-child]:mb-0"
+          dangerouslySetInnerHTML={{ __html: topic.bodyHtml }}
+        />
+      ) : null}
+    </section>
+  );
+}
+
 function TopicDetails({
   topic,
   nested = false,
@@ -82,7 +101,13 @@ function TopicCard({ topic }: { topic: GuideTopic }) {
   return <TopicDetails topic={topic} />;
 }
 
-export function GuideTopicList({ topics }: { topics: GuideTopic[] }) {
+export function GuideTopicList({
+  topics,
+  variant = "expand",
+}: {
+  topics: GuideTopic[];
+  variant?: "expand" | "glance";
+}) {
   useEffect(() => {
     function openFromHash() {
       const id = window.location.hash.replace(/^#/, "");
@@ -99,6 +124,16 @@ export function GuideTopicList({ topics }: { topics: GuideTopic[] }) {
     window.addEventListener("hashchange", openFromHash);
     return () => window.removeEventListener("hashchange", openFromHash);
   }, []);
+
+  if (variant === "glance") {
+    return (
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+        {topics.map((topic) => (
+          <TopicGlance key={topic.id} topic={topic} />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="mt-6 space-y-3">

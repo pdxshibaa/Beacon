@@ -2,10 +2,16 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
 import { ContentsNav } from "@/components/contents-nav";
+import { GuideHighlight } from "@/components/guide-highlight";
 import { GuideTopicList } from "@/components/guide-topic-list";
 import { PaperBody } from "@/components/paper-body";
 import { SectionPager } from "@/components/section-pager";
-import { CARD_TOPIC_SLUGS, splitGuideTopics } from "@/lib/guide-topics";
+import {
+  CARD_TOPIC_SLUGS,
+  GLANCE_CARD_SLUGS,
+  getHospitalizationLayout,
+  splitGuideTopics,
+} from "@/lib/guide-topics";
 import { getNeighbors, getSection, paper } from "@/lib/paper";
 
 export function generateStaticParams() {
@@ -51,6 +57,10 @@ export default async function GuideSectionPage({
   const topicSplit = CARD_TOPIC_SLUGS.has(section.slug)
     ? splitGuideTopics(section.html, section.slug)
     : null;
+  const hospitalizationLayout =
+    section.slug === "hospitalization"
+      ? getHospitalizationLayout(section.html)
+      : null;
 
   return (
     <div className="mx-auto flex w-full max-w-6xl gap-10 px-4 py-10 sm:px-6 sm:py-12">
@@ -63,7 +73,17 @@ export default async function GuideSectionPage({
         <h1 className="font-heading text-3xl leading-tight tracking-tight text-foreground sm:text-4xl">
           {section.title}
         </h1>
-        {topicSplit && topicSplit.topics.length > 0 ? (
+        {hospitalizationLayout ? (
+          <>
+            {hospitalizationLayout.caregiver ? (
+              <GuideHighlight heading={hospitalizationLayout.caregiver} />
+            ) : null}
+            <PaperBody html={hospitalizationLayout.remainderHtml} />
+            {hospitalizationLayout.safety ? (
+              <GuideHighlight heading={hospitalizationLayout.safety} />
+            ) : null}
+          </>
+        ) : topicSplit && topicSplit.topics.length > 0 ? (
           <>
             {topicSplit.introHtml ? (
               <div
@@ -71,7 +91,18 @@ export default async function GuideSectionPage({
                 dangerouslySetInnerHTML={{ __html: topicSplit.introHtml }}
               />
             ) : null}
-            <GuideTopicList topics={topicSplit.topics} />
+            <GuideTopicList
+              topics={topicSplit.topics}
+              variant={
+                GLANCE_CARD_SLUGS.has(section.slug) ? "glance" : "expand"
+              }
+            />
+            {topicSplit.outroHtml ? (
+              <div
+                className="paper-body"
+                dangerouslySetInnerHTML={{ __html: topicSplit.outroHtml }}
+              />
+            ) : null}
           </>
         ) : (
           <PaperBody html={section.html} />

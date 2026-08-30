@@ -26,9 +26,6 @@ export function GuideAbout() {
     <div className="space-y-5 text-base leading-relaxed text-foreground/90">
       <Html html={intro.leadHtml} />
       <div>
-        <h2 className="font-heading text-xl tracking-tight text-foreground">
-          Why this is hard
-        </h2>
         <p className="mt-2">{intro.factorLead}</p>
         <ul className="mt-3 list-disc space-y-1 pl-5 text-muted-foreground">
           {intro.factors.map((factor) => (
