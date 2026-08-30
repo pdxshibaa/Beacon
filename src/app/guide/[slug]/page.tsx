@@ -11,6 +11,8 @@ import {
   GLANCE_CARD_SLUGS,
   STACK_CARD_SLUGS,
   getHospitalizationLayout,
+  getCaregiverStrategiesLayout,
+  getCaregiverWellbeingLayout,
   splitGuideTopics,
 } from "@/lib/guide-topics";
 import { getNeighbors, getSection, paper } from "@/lib/paper";
@@ -62,6 +64,14 @@ export default async function GuideSectionPage({
     section.slug === "hospitalization"
       ? getHospitalizationLayout(section.html)
       : null;
+  const caregiverStrategiesLayout =
+    section.slug === "caregiver-strategies"
+      ? getCaregiverStrategiesLayout(section.html)
+      : null;
+  const caregiverWellbeingLayout =
+    section.slug === "caregiver-wellbeing"
+      ? getCaregiverWellbeingLayout(section.html)
+      : null;
 
   return (
     <div className="mx-auto flex w-full max-w-6xl gap-10 px-4 py-10 sm:px-6 sm:py-12">
@@ -83,6 +93,44 @@ export default async function GuideSectionPage({
             {hospitalizationLayout.safety ? (
               <GuideHighlight heading={hospitalizationLayout.safety} />
             ) : null}
+          </>
+        ) : caregiverStrategiesLayout ? (
+          <>
+            {caregiverStrategiesLayout.introHtml ? (
+              <div
+                className="paper-body !mt-3 text-lg text-foreground/80"
+                dangerouslySetInnerHTML={{
+                  __html: caregiverStrategiesLayout.introHtml,
+                }}
+              />
+            ) : null}
+            {caregiverStrategiesLayout.chartHtml ? (
+              <div
+                className="paper-body !mt-6 overflow-x-auto [&_h4:first-of-type]:mt-0"
+                dangerouslySetInnerHTML={{
+                  __html: caregiverStrategiesLayout.chartHtml,
+                }}
+              />
+            ) : null}
+            <GuideTopicList
+              topics={caregiverStrategiesLayout.topics}
+              variant="stack"
+            />
+          </>
+        ) : caregiverWellbeingLayout ? (
+          <>
+            {caregiverWellbeingLayout.introHtml ? (
+              <div
+                className="paper-body !mt-3 text-lg text-foreground/80"
+                dangerouslySetInnerHTML={{
+                  __html: caregiverWellbeingLayout.introHtml,
+                }}
+              />
+            ) : null}
+            <GuideTopicList
+              topics={caregiverWellbeingLayout.topics}
+              variant="stack"
+            />
           </>
         ) : topicSplit && topicSplit.topics.length > 0 ? (
           <>

@@ -272,6 +272,8 @@
       "heading": "12. Caregiver Strategies",
       "html": [
         "<p>There is rarely a perfect response to mental illness in a young adult. Caregivers navigate uncertainty with limited influence and information. The goal is to be someone that the young adult can count on, a consistent, validating person with reasonable boundaries, rather than to fix, manage, or control. The relationship itself may be an important tool for recovery.</p>",
+        "<h4><a id=\"_q0fzk5n9gy8n\"></a> Communication Strategies for Common Situations</h4>",
+        "<table><thead><tr><th><p>Situation</p></th><th><p>What TO Do</p></th><th><p>What NOT TO Do</p></th></tr></thead><tbody><tr><td><p>They share distress</p></td><td><p>Validate emotions first, always</p></td><td><p>Problem solve immediately or minimize their emotions</p></td></tr><tr><td><p>They go silent</p></td><td><p>Send a warm, non-demandning text</p></td><td><p>Flood them with calls/texts</p></td></tr><tr><td><p>They’re in crisis</p></td><td><p>Ask directly, “Are you thinking about suicide?”</p></td><td><p>Dance around it out of fear</p></td></tr><tr><td><p>They refuse help</p></td><td><p>Offer small, manageable steps with choices, collaborate rather than attempt to control. Reinforce shared goals.</p></td><td><p>Issue ultimatums in the moment</p></td></tr><tr><td><p>You’re terrified</p></td><td><p>Call YOUR support person first</p></td><td><p>Call your adult child while dysregulated</p></td></tr><tr><td><p>They push you away</p></td><td><p>Stay present, low pressure</p></td><td><p>Withdraw or retaliate</p></td></tr></tbody></table>",
         "<h4><a id=\"_bglz0vjpmo0\"></a>Expectations</h4>",
         "<p>Careful, thoughtful decisions do not guarantee positive outcomes with mental illness (this is true for many physical illnesses as well). Caregivers play an important role, but there are still limits to diagnosis and treatments.</p>",
         "<h4><a id=\"_8poqugk4h7y3\"></a>Balancing Options</h4>",
@@ -286,9 +288,7 @@
         "<p>Sometimes the young adult will prefer communicating with one caregiver over another. Even when there isn’t full agreement on every decision, it helps to come up with common messaging. Try to avoid situations where a young adult can use one caregiver’s words against the other.</p>",
         "<p>In reality, <span class=\"limited-engagement\">◐ Limited Engagement</span> situations are common. Engagement may also fluctuate over time. Maintaining even a partial connection may be an important short-term goal. Even an infrequent or limited continued connection to one person may help preserve a path back to engagement later.</p>",
         "<h4><a id=\"_mmb8bewdbdei\"></a>Building Caregiver Capacity</h4>",
-        "<p>It's common for caregivers to be in the dark about the world of mental health when an adult child has an acute crisis. Caregivers may start to educate themselves about mental health conditions, treatment options, crisis systems, and communication strategies. This guide is a good starting point. Tbd: options for next steps.</p>",
-        "<h4><a id=\"_q0fzk5n9gy8n\"></a> Communication Strategies for Common Situations</h4>",
-        "<table><thead><tr><th><p>Situation</p></th><th><p>What TO Do</p></th><th><p>What NOT TO Do</p></th></tr></thead><tbody><tr><td><p>They share distress</p></td><td><p>Validate emotions first, always</p></td><td><p>Problem solve immediately or minimize their emotions</p></td></tr><tr><td><p>They go silent</p></td><td><p>Send a warm, non-demandning text</p></td><td><p>Flood them with calls/texts</p></td></tr><tr><td><p>They’re in crisis</p></td><td><p>Ask directly, “Are you thinking about suicide?”</p></td><td><p>Dance around it out of fear</p></td></tr><tr><td><p>They refuse help</p></td><td><p>Offer small, manageable steps with choices, collaborate rather than attempt to control. Reinforce shared goals.</p></td><td><p>Issue ultimatums in the moment</p></td></tr><tr><td><p>You’re terrified</p></td><td><p>Call YOUR support person first</p></td><td><p>Call your adult child while dysregulated</p></td></tr><tr><td><p>They push you away</p></td><td><p>Stay present, low pressure</p></td><td><p>Withdraw or retaliate</p></td></tr></tbody></table>"
+        "<p>It's common for caregivers to be in the dark about the world of mental health when an adult child has an acute crisis. Caregivers may start to educate themselves about mental health conditions, treatment options, crisis systems, and communication strategies. This guide is a good starting point.</p>"
       ]
     },
     {
@@ -312,7 +312,7 @@
         "<p>Especially when the young adult with mental illness does not live at home, burnout may catch families by surprise. Try to recognize the patterns early. Supports such as workplace accommodations, medical leave (including FMLA when applicable), shared caregiving responsibilities, and even something as simple as asking for a meal train could help maintain stability in difficult times. </p>",
         "<h4><a id=\"_qjt5alm9grqh\"></a>What Fills Your Bucket </h4>",
         "<p>Find activities that help you feel revitalized: a hobby, recreation, exercise, volunteering, or other restorative activities. Try to set aside regular time for these activities. It helps sustain a healthier life.</p>",
-        "<p> <span class=\"limited-engagement\">◐ Limited Engagement</span> situations</p>",
+        "<h4><a id=\"_limited-engagement-situations\"></a>Limited Engagement Situations</h4>",
         "<p>Take time to refocus on your own health and stability. Learn more about mental illness, communication, and crisis response to support future connections.</p>"
       ]
     },

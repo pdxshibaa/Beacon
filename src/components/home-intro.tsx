@@ -57,7 +57,7 @@ export function HomeIntro() {
               {paper.eyebrow}
             </p>
             <h1 className="mt-2 font-heading text-3xl leading-[1.15] tracking-tight text-foreground sm:text-4xl">
-              Our college-age young adult is having a mental health crisis
+              When a college-age young adult is having a mental health crisis
             </h1>
             <p className="mt-3 text-foreground/80">
               Whether you’re new to mental health crises or have been navigating the system for years, this site offers a roadmap of key resources and considerations for supporting a young adult, ages 18–25.

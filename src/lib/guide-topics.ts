@@ -188,6 +188,70 @@ export function getHospitalizationLayout(html: string) {
   };
 }
 
+function fullBodyTopic(block: {
+  headingHtml: string;
+  bodyHtml: string;
+}): GuideTopic {
+  const title = htmlHeadingText(block.headingHtml).trim();
+  return {
+    id: htmlHeadingId(block.headingHtml) ?? slugFromTitle(title),
+    title,
+    preview: "",
+    bodyHtml: block.bodyHtml,
+  };
+}
+
+export function getCaregiverStrategiesLayout(html: string) {
+  const { introHtml, blocks } = splitByHeading(html, "h4");
+  const chartIndex = blocks.findIndex((block) =>
+    /Communication Strategies/i.test(htmlHeadingText(block.headingHtml))
+  );
+  const chartBlock = chartIndex >= 0 ? blocks[chartIndex] : null;
+  const rest = blocks.filter((_, index) => index !== chartIndex);
+
+  return {
+    introHtml,
+    chartHtml: chartBlock
+      ? `${chartBlock.headingHtml}\n${chartBlock.bodyHtml}`
+      : "",
+    topics: rest.map(fullBodyTopic),
+  };
+}
+
+const WELLBEING_TOPIC_ORDER = [
+  /^Resources$/i,
+  /^Support\b/i,
+  /^Burnout/i,
+  /^What Fills Your Bucket/i,
+  /^Limited Engagement Situations$/i,
+];
+
+export function getCaregiverWellbeingLayout(html: string) {
+  const { introHtml, blocks } = splitByHeading(html, "h4");
+  const used = new Set<number>();
+  const topics: GuideTopic[] = [];
+
+  for (const pattern of WELLBEING_TOPIC_ORDER) {
+    const index = blocks.findIndex(
+      (block, i) =>
+        !used.has(i) && pattern.test(htmlHeadingText(block.headingHtml).trim())
+    );
+    if (index < 0) {
+      continue;
+    }
+    used.add(index);
+    topics.push(fullBodyTopic(blocks[index]));
+  }
+
+  blocks.forEach((block, index) => {
+    if (!used.has(index)) {
+      topics.push(fullBodyTopic(block));
+    }
+  });
+
+  return { introHtml, topics };
+}
+
 function topicFromBlock(
   block: { headingHtml: string; bodyHtml: string },
   nestedTag?: "h5"
