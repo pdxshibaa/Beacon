@@ -28,16 +28,18 @@ export function HomeIntro() {
   return (
     <div className="w-full">
       <div className="border-b border-primary/20 bg-primary text-primary-foreground">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p className="text-sm font-medium">
-            If someone is not safe right now
-          </p>
+        <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
           <Link
             href="/guide/emergency-services"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold underline-offset-4 hover:underline"
+            className="inline-flex flex-col gap-1 text-sm sm:flex-row sm:items-baseline sm:gap-3"
           >
-            Open emergency services
-            <ArrowRight className="size-4" />
+            <span className="font-medium">
+              If someone is not safe right now
+            </span>
+            <span className="inline-flex items-center gap-1.5 font-semibold underline-offset-4 hover:underline">
+              Open emergency services
+              <ArrowRight className="size-4" />
+            </span>
           </Link>
         </div>
       </div>

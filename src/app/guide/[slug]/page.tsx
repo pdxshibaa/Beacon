@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
 import { ContentsNav } from "@/components/contents-nav";
+import { GuideTopicList } from "@/components/guide-topic-list";
 import { PaperBody } from "@/components/paper-body";
 import { SectionPager } from "@/components/section-pager";
+import { CARD_TOPIC_SLUGS, splitGuideTopics } from "@/lib/guide-topics";
 import { getNeighbors, getSection, paper } from "@/lib/paper";
 
 export function generateStaticParams() {
@@ -46,6 +48,9 @@ export default async function GuideSectionPage({
     notFound();
   }
   const { previous, next } = getNeighbors(slug);
+  const topicSplit = CARD_TOPIC_SLUGS.has(section.slug)
+    ? splitGuideTopics(section.html)
+    : null;
 
   return (
     <div className="mx-auto flex w-full max-w-6xl gap-10 px-4 py-10 sm:px-6 sm:py-12">
@@ -58,7 +63,19 @@ export default async function GuideSectionPage({
         <h1 className="font-heading text-3xl leading-tight tracking-tight text-foreground sm:text-4xl">
           {section.title}
         </h1>
-        <PaperBody html={section.html} />
+        {topicSplit && topicSplit.topics.length > 0 ? (
+          <>
+            {topicSplit.introHtml ? (
+              <div
+                className="paper-body !mt-3 text-lg text-foreground/80"
+                dangerouslySetInnerHTML={{ __html: topicSplit.introHtml }}
+              />
+            ) : null}
+            <GuideTopicList topics={topicSplit.topics} />
+          </>
+        ) : (
+          <PaperBody html={section.html} />
+        )}
         <SectionPager previous={previous} next={next} />
       </article>
     </div>
