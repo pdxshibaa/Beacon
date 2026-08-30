@@ -6,9 +6,17 @@ export const CARD_TOPIC_SLUGS = new Set([
   "system-constraints",
   "ongoing-crisis",
   "campus-resources",
+  "off-campus-resources",
+  "complicating-factors",
+  "planning",
 ]);
 
-export const GLANCE_CARD_SLUGS = new Set(["campus-resources"]);
+export const GLANCE_CARD_SLUGS = new Set([
+  "campus-resources",
+  "off-campus-resources",
+]);
+
+export const STACK_CARD_SLUGS = new Set(["planning"]);
 
 export type GuideTopic = {
   id: string;
@@ -16,6 +24,8 @@ export type GuideTopic = {
   bodyHtml: string;
   preview: string;
   children?: GuideTopic[];
+  banner?: boolean;
+  static?: boolean;
 };
 
 export type SplitGuideHtml = {
@@ -69,7 +79,7 @@ function restAfterPreview(bodyHtml: string, preview: string): string {
   const leftover = leftoverInner.replace(/^\s+/, "");
   if (!htmlToText(leftover)) {
     const remainder = afterP.replace(/^<\/p>\s*/i, "");
-    return htmlToText(remainder) ? remainder : bodyHtml;
+    return htmlToText(remainder) ? remainder : "";
   }
   return `${open}${space}${leftover}${afterP}`;
 }
@@ -183,7 +193,7 @@ function topicFromBlock(
   nestedTag?: "h5"
 ): GuideTopic {
   const title = htmlHeadingText(block.headingHtml);
-  const id = htmlHeadingId(block.headingHtml) ?? title;
+  const id = htmlHeadingId(block.headingHtml) ?? slugFromTitle(title);
 
   if (nestedTag) {
     const nested = splitByHeading(block.bodyHtml, nestedTag);
@@ -228,6 +238,28 @@ function applyPageOptions(topics: GuideTopic[], slug: string): GuideTopic[] {
     });
   }
 
+  if (slug === "complicating-factors") {
+    return topics.map((topic) => {
+      const title = /^Daily Life Impacts$/i.test(topic.title)
+        ? "Impact on Daily Life"
+        : topic.title.trim();
+
+      if (!topic.children?.length || !/^Treatment Complexity$/i.test(title)) {
+        return { ...topic, title };
+      }
+
+      return {
+        ...topic,
+        title,
+        children: topic.children.map((child) =>
+          /^Insight\/Awareness$/i.test(child.title)
+            ? { ...child, static: true }
+            : child
+        ),
+      };
+    });
+  }
+
   if (slug !== "system-constraints") {
     return topics;
   }
@@ -258,8 +290,14 @@ function applyPageOptions(topics: GuideTopic[], slug: string): GuideTopic[] {
 }
 
 export function splitGuideTopics(html: string, slug?: string): SplitGuideHtml {
-  if (slug === "campus-resources") {
-    return splitStrongTopics(html);
+  if (slug === "campus-resources" || slug === "off-campus-resources" || slug === "planning") {
+    const split = splitStrongTopics(html);
+    if (slug === "off-campus-resources") {
+      split.topics = split.topics.map((topic) =>
+        /^911/.test(topic.title) ? { ...topic, banner: true } : topic
+      );
+    }
+    return split;
   }
 
   const { introHtml, blocks } = splitByHeading(html, "h4");
@@ -279,11 +317,20 @@ function slugFromTitle(title: string): string {
 }
 
 function isStrongTitleParagraph(html: string): boolean {
-  return /^<p\b[^>]*>\s*<strong>[\s\S]*?<\/strong>\s*<\/p>$/i.test(html.trim());
+  const trimmed = html.trim();
+  if (!/^<p\b[^>]*>\s*<strong>/i.test(trimmed)) {
+    return false;
+  }
+  const text = htmlToText(trimmed);
+  return text.length > 0 && text.length < 100 && !/[.!?]./.test(text);
+}
+
+function isLinkOnlyParagraph(html: string): boolean {
+  return /^<p\b[^>]*>\s*<a\b[\s\S]*<\/a>\s*<\/p>$/i.test(html.trim());
 }
 
 function splitStrongTopics(html: string): SplitGuideHtml {
-  const paragraphs = [...html.matchAll(/<p\b[^>]*>[\s\S]*?<\/p>/gi)].map(
+  const blocks = [...html.matchAll(/<(p|ul|ol)\b[\s\S]*?<\/\1>/gi)].map(
     (match) => match[0]
   );
   const introParts: string[] = [];
@@ -292,13 +339,13 @@ function splitStrongTopics(html: string): SplitGuideHtml {
   let current: GuideTopic | null = null;
   let pastTitles = false;
 
-  for (const paragraph of paragraphs) {
-    if (isStrongTitleParagraph(paragraph)) {
+  for (const block of blocks) {
+    if (isStrongTitleParagraph(block)) {
       pastTitles = true;
       if (current) {
         topics.push(current);
       }
-      const title = htmlHeadingText(paragraph);
+      const title = htmlHeadingText(block);
       current = {
         id: slugFromTitle(title),
         title,
@@ -308,21 +355,39 @@ function splitStrongTopics(html: string): SplitGuideHtml {
       continue;
     }
     if (!pastTitles) {
-      introParts.push(paragraph);
-      continue;
-    }
-    if (current && !current.bodyHtml) {
-      current.bodyHtml = paragraph;
+      introParts.push(block);
       continue;
     }
     if (current) {
-      topics.push(current);
-      current = null;
+      current.bodyHtml = current.bodyHtml
+        ? `${current.bodyHtml}\n${block}`
+        : block;
+      continue;
     }
-    outroParts.push(paragraph);
+    outroParts.push(block);
   }
   if (current) {
     topics.push(current);
+  }
+
+  const last = topics.at(-1);
+  if (last?.bodyHtml) {
+    const paras = [...last.bodyHtml.matchAll(/<p\b[^>]*>[\s\S]*?<\/p>/gi)].map(
+      (match) => match[0]
+    );
+    if (paras.length > 1) {
+      const kept = [paras[0]];
+      const trailing: string[] = [];
+      for (const paragraph of paras.slice(1)) {
+        if (isLinkOnlyParagraph(paragraph)) {
+          kept.push(paragraph);
+        } else {
+          trailing.push(paragraph);
+        }
+      }
+      last.bodyHtml = kept.join("\n");
+      outroParts.unshift(...trailing);
+    }
   }
 
   return {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 
 import { SearchBox } from "@/components/search-box";
 import { TopicCards } from "@/components/topic-cards";
@@ -28,47 +28,63 @@ export function HomeIntro() {
   return (
     <div className="w-full">
       <div className="border-b border-primary/20 bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
-          <Link
-            href="/guide/emergency-services"
-            className="inline-flex flex-col gap-1 text-sm sm:flex-row sm:items-baseline sm:gap-3"
-          >
-            <span className="font-medium">
-              If someone is not safe right now
-            </span>
-            <span className="inline-flex items-center gap-1.5 font-semibold underline-offset-4 hover:underline">
-              Open emergency services
+        <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 text-sm sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-4 sm:px-6">
+          <span className="font-medium">If someone is not safe right now</span>
+          <span className="inline-flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <a
+              href="tel:911"
+              className="inline-flex items-center gap-1.5 font-semibold underline-offset-4 hover:underline"
+            >
+              Call 911
+              <Phone className="size-4" />
+            </a>
+            <span>or</span>
+            <Link
+              href="/guide/emergency-services"
+              className="inline-flex items-center gap-1.5 font-semibold underline-offset-4 hover:underline"
+            >
+              Explore emergency services
               <ArrowRight className="size-4" />
-            </span>
-          </Link>
+            </Link>
+          </span>
         </div>
       </div>
 
       <section className="home-hero border-b border-border/70">
-        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
-          <p className="text-sm font-medium tracking-wide text-primary uppercase">
-            {paper.eyebrow}
-          </p>
-          <h1 className="mt-2 max-w-2xl font-heading text-3xl leading-[1.15] tracking-tight text-foreground sm:text-4xl">
-            Our college-age young adult is having a mental health crisis
-          </h1>
-          <p className="mt-3 max-w-2xl text-foreground/80">
-            Whether you’re new to mental health crises or have been navigating the system for years, this site offers a roadmap of key resources and considerations for supporting a young adult, ages 18–25.
-          </p>
-          <p className="mt-3 max-w-2xl text-foreground/80">
-            Families, friends, and others who are supporting a young adult: choose a topic below, search for what you need, or explore the references to learn more.
-          </p>
-          <p className="mt-3">
-  <Link
-    href="/about"
-    className="text-sm font-small text-primary text-right underline-offset-4 hover:underline"
-  >
-    Read more about this guide
-  </Link>
-          </p>
-          <div className="mt-6 max-w-xl">
-            <SearchBox size="hero" />
+        <div className="mx-auto flex max-w-6xl items-start gap-4 px-4 py-8 sm:gap-6 sm:px-6 sm:py-10">
+          <div className="min-w-0 max-w-2xl flex-1">
+            <p className="text-sm font-medium tracking-wide text-primary uppercase">
+              {paper.eyebrow}
+            </p>
+            <h1 className="mt-2 font-heading text-3xl leading-[1.15] tracking-tight text-foreground sm:text-4xl">
+              Our college-age young adult is having a mental health crisis
+            </h1>
+            <p className="mt-3 text-foreground/80">
+              Whether you’re new to mental health crises or have been navigating the system for years, this site offers a roadmap of key resources and considerations for supporting a young adult, ages 18–25.
+            </p>
+            <p className="mt-3 text-foreground/80">
+              Families, friends, and others who are supporting a young adult: choose a topic below, search for what you need, or explore the references to learn more.
+            </p>
+            <p className="mt-3">
+              <Link
+                href="/about"
+                className="text-sm text-primary underline-offset-4 hover:underline"
+              >
+                Read more about this guide
+              </Link>
+            </p>
+            <div className="mt-6 max-w-xl">
+              <SearchBox size="hero" />
+            </div>
           </div>
+          <img
+            src="/images/lighthouse.webp"
+            alt=""
+            width={800}
+            height={800}
+            className="mt-1 aspect-square w-[4.75rem] shrink-0 self-start rounded-xl object-cover sm:w-28 md:w-36 lg:w-44"
+            aria-hidden="true"
+          />
         </div>
       </section>
 

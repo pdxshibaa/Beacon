@@ -11,8 +11,16 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3 sm:px-6">
         <Link
           href="/"
-          className="font-heading text-xl tracking-tight text-foreground"
+          className="inline-flex items-center gap-2 font-heading text-xl tracking-tight text-foreground"
         >
+          <img
+            src="/images/lighthouse.webp"
+            alt=""
+            width={64}
+            height={64}
+            className="size-8 rounded-md object-cover"
+            aria-hidden="true"
+          />
           {site.name}
         </Link>
         <div className="order-3 w-full sm:order-2 sm:min-w-[16rem] sm:flex-1">

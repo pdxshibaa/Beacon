@@ -6,7 +6,32 @@ import { ChevronDown } from "lucide-react";
 import type { GuideTopic } from "@/lib/guide-topics";
 import { cn } from "@/lib/utils";
 
-function TopicGlance({ topic }: { topic: GuideTopic }) {
+function TopicBanner({ topic }: { topic: GuideTopic }) {
+  return (
+    <section
+      id={topic.id}
+      className="scroll-mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-0.5 rounded-xl border border-border bg-card px-4 py-2.5 shadow-sm sm:px-5"
+    >
+      <h2 className="font-heading text-lg font-semibold tracking-tight text-foreground">
+        {topic.title}
+      </h2>
+      {topic.bodyHtml ? (
+        <div
+          className="paper-body !mt-0 min-w-0 flex-1 text-sm leading-relaxed [&_p]:mb-0 [&_p]:inline"
+          dangerouslySetInnerHTML={{ __html: topic.bodyHtml }}
+        />
+      ) : null}
+    </section>
+  );
+}
+
+function TopicGlance({
+  topic,
+  spacious = false,
+}: {
+  topic: GuideTopic;
+  spacious?: boolean;
+}) {
   return (
     <section
       id={topic.id}
@@ -17,9 +42,32 @@ function TopicGlance({ topic }: { topic: GuideTopic }) {
       </h2>
       {topic.bodyHtml ? (
         <div
-          className="paper-body !mt-2 text-sm leading-relaxed [&_p:last-child]:mb-0"
+          className={cn(
+            "paper-body !mt-2 leading-relaxed [&_p:last-child]:mb-0 [&_li:last-child]:mb-0",
+            spacious
+              ? "text-[1.0625rem] [&_li]:mb-3"
+              : "text-sm"
+          )}
           dangerouslySetInnerHTML={{ __html: topic.bodyHtml }}
         />
+      ) : null}
+    </section>
+  );
+}
+
+function TopicStatic({ topic }: { topic: GuideTopic }) {
+  return (
+    <section
+      id={topic.id}
+      className="scroll-mt-8 rounded-2xl border border-border bg-card px-4 py-3 shadow-sm sm:px-5 sm:py-4"
+    >
+      <h3 className="font-heading text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+        {topic.title}
+      </h3>
+      {topic.preview ? (
+        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+          {topic.preview}
+        </p>
       ) : null}
     </section>
   );
@@ -90,9 +138,13 @@ function TopicCard({ topic }: { topic: GuideTopic }) {
           />
         ) : null}
         <div className="mt-4 space-y-3">
-          {topic.children.map((child) => (
-            <TopicDetails key={child.id} topic={child} nested />
-          ))}
+          {topic.children.map((child) =>
+            child.static ? (
+              <TopicStatic key={child.id} topic={child} />
+            ) : (
+              <TopicDetails key={child.id} topic={child} nested />
+            )
+          )}
         </div>
       </section>
     );
@@ -106,7 +158,7 @@ export function GuideTopicList({
   variant = "expand",
 }: {
   topics: GuideTopic[];
-  variant?: "expand" | "glance";
+  variant?: "expand" | "glance" | "stack";
 }) {
   useEffect(() => {
     function openFromHash() {
@@ -125,12 +177,29 @@ export function GuideTopicList({
     return () => window.removeEventListener("hashchange", openFromHash);
   }, []);
 
-  if (variant === "glance") {
+  if (variant === "stack") {
     return (
-      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+      <div className="mt-6 space-y-3">
         {topics.map((topic) => (
-          <TopicGlance key={topic.id} topic={topic} />
+          <TopicGlance key={topic.id} topic={topic} spacious />
         ))}
+      </div>
+    );
+  }
+
+  if (variant === "glance") {
+    const banners = topics.filter((topic) => topic.banner);
+    const rest = topics.filter((topic) => !topic.banner);
+    return (
+      <div className="mt-6 space-y-3">
+        {banners.map((topic) => (
+          <TopicBanner key={topic.id} topic={topic} />
+        ))}
+        <div className="grid gap-3 sm:grid-cols-2">
+          {rest.map((topic) => (
+            <TopicGlance key={topic.id} topic={topic} />
+          ))}
+        </div>
       </div>
     );
   }

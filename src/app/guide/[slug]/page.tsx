@@ -9,6 +9,7 @@ import { SectionPager } from "@/components/section-pager";
 import {
   CARD_TOPIC_SLUGS,
   GLANCE_CARD_SLUGS,
+  STACK_CARD_SLUGS,
   getHospitalizationLayout,
   splitGuideTopics,
 } from "@/lib/guide-topics";
@@ -94,7 +95,11 @@ export default async function GuideSectionPage({
             <GuideTopicList
               topics={topicSplit.topics}
               variant={
-                GLANCE_CARD_SLUGS.has(section.slug) ? "glance" : "expand"
+                STACK_CARD_SLUGS.has(section.slug)
+                  ? "stack"
+                  : GLANCE_CARD_SLUGS.has(section.slug)
+                    ? "glance"
+                    : "expand"
               }
             />
             {topicSplit.outroHtml ? (

@@ -18,7 +18,23 @@ export type Paper = {
   sections: PaperSection[];
 };
 
-export const paper = paperJson as Paper;
+type PaperJson = Omit<Paper, "sections"> & {
+  sections: Array<Omit<PaperSection, "html"> & { html: string | string[] }>;
+};
+
+function htmlFromJson(html: string | string[]): string {
+  return (Array.isArray(html) ? html.join("\n") : html).trim();
+}
+
+const source = paperJson as PaperJson;
+
+export const paper: Paper = {
+  ...source,
+  sections: source.sections.map((section) => ({
+    ...section,
+    html: htmlFromJson(section.html),
+  })),
+};
 
 export const introduction = paper.sections.find(
   (section) => section.slug === "introduction"
