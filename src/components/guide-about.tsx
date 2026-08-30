@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { getIntroContent } from "@/lib/intro";
 import { paper } from "@/lib/paper";
 
@@ -53,6 +55,14 @@ export function GuideAbout() {
         className="text-sm text-muted-foreground"
       />
       <p className="text-sm text-muted-foreground">{paper.authors}</p>
+      <p className="text-sm">
+        <Link
+          href="/feedback"
+          className="text-primary underline-offset-4 hover:underline"
+        >
+          Help improve Project Beacon
+        </Link>
+      </p>
     </div>
   );
 }

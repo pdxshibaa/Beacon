@@ -37,6 +37,14 @@ export function ContentsNav({
             About this guide
           </Link>
         </li>
+        <li>
+          <Link
+            href="/feedback"
+            className="block rounded-md px-2 py-1 leading-snug text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            Help improve Project Beacon
+          </Link>
+        </li>
         {topicSections.map((section) => {
           const href = `/guide/${section.slug}`;
           const active = section.slug === currentSlug;

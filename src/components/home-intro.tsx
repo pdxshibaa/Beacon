@@ -72,6 +72,13 @@ export function HomeIntro() {
               >
                 Read more about this guide
               </Link>
+              <span className="text-muted-foreground"> · </span>
+              <Link
+                href="/feedback"
+                className="text-sm text-primary underline-offset-4 hover:underline"
+              >
+                Help improve Project Beacon
+              </Link>
             </p>
             <div className="mt-6 max-w-xl">
               <SearchBox size="hero" />

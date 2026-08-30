@@ -6,4 +6,6 @@ export const site = {
     "website content is shared under Creative Commons (CC BY-NC 4.0)",
   contentShare:
     "Anyone can share or adapt the content for non-commercial purposes only.",
+  /** Public address on the feedback page. Shown on the page and used for mailto. */
+  feedbackEmail: "",
 } as const;

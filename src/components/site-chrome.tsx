@@ -49,6 +49,14 @@ export function SiteFooter() {
   return (
     <footer className="mt-auto border-t border-border/80">
       <div className="mx-auto max-w-6xl space-y-2 px-4 py-6 text-sm text-muted-foreground sm:px-6">
+        <p>
+          <Link
+            href="/feedback"
+            className="text-foreground/80 underline-offset-4 hover:underline"
+          >
+            Help improve Project Beacon
+          </Link>
+        </p>
         <p>{paper.draftNotice}</p>
         <p>{site.codeLicense}</p>
         <p>{site.contentLicense}</p>
