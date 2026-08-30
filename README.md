@@ -4,7 +4,7 @@ How to respond to a mental health crisis. Geared for parents and caregivers of c
 
 The homepage is a starting page: a short overview, then topics you can open in any order. Other topics have their own pages. Search is in the header and on the home page; try a term such as HIPAA.
 
-Guide wording comes from `content/Responding-to-a-Mental-Health-Crisis.docx`.
+The live guide is `src/content/paper.json`. Pages, search, and the topic list all read from that file. The original Word document is in `content/Responding-to-a-Mental-Health-Crisis.docx`; it is an archive copy, not what the site serves.
 
 ## Run locally
 
