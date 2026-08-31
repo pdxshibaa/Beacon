@@ -27,7 +27,7 @@ const START_HERE = [
 export function HomeIntro() {
   return (
     <div className="w-full">
-      <div className="border-b border-primary/20 bg-primary text-primary-foreground">
+      <div className="emergency-bar border-b">
         <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 text-sm sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-4 sm:px-6">
           <span className="font-medium">If someone is not safe right now</span>
           <span className="inline-flex flex-wrap items-baseline gap-x-2 gap-y-1">
@@ -85,7 +85,7 @@ export function HomeIntro() {
             </div>
           </div>
           <img
-            src="/images/lighthouse.webp"
+            src="/images/lighthouse.png"
             alt=""
             width={800}
             height={800}

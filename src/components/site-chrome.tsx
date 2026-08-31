@@ -14,7 +14,7 @@ export function SiteHeader() {
           className="inline-flex items-center gap-2 font-heading text-xl tracking-tight text-foreground"
         >
           <img
-            src="/images/lighthouse.webp"
+            src="/images/lighthouse.png"
             alt=""
             width={64}
             height={64}
