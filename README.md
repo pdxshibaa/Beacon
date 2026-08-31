@@ -15,6 +15,12 @@ npm run dev
 
 Open [http://localhost:43141](http://localhost:43141).
 
+## Live site
+
+The site is a static export, deployed from `main` to GitHub Pages. The public URL is [https://beaconforfamilies.org](https://beaconforfamilies.org) once DNS at Squarespace points at GitHub Pages.
+
+In the GitHub repo: **Settings → Pages → Source: GitHub Actions**. Custom domain: `beaconforfamilies.org`.
+
 ## Licenses
 
 - website code is shared under the MIT license

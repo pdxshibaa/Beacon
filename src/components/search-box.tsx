@@ -95,7 +95,7 @@ export function SearchBox({
   return (
     <form
       ref={rootRef}
-      action="/search"
+      action="/search/"
       method="get"
       role="search"
       className={cn("relative w-full", size === "hero" && "max-w-2xl")}

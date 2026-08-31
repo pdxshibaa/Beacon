@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 import { ContentsNav } from "@/components/contents-nav";
 import { GuideHighlight } from "@/components/guide-highlight";
@@ -18,11 +18,12 @@ import {
 } from "@/lib/guide-topics";
 import { getNeighbors, getSection, paper } from "@/lib/paper";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return [
-    ...paper.sections.map((section) => ({ slug: section.slug })),
-    { slug: "conclusion" },
-  ];
+  return paper.sections
+    .filter((section) => section.slug !== "introduction")
+    .map((section) => ({ slug: section.slug }));
 }
 
 export async function generateMetadata({
@@ -31,9 +32,6 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  if (slug === "introduction") {
-    return { title: "Start here" };
-  }
   const section = getSection(slug);
   if (!section) {
     return { title: "Not found" };
@@ -47,12 +45,6 @@ export default async function GuideSectionPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  if (slug === "introduction") {
-    redirect("/");
-  }
-  if (slug === "conclusion") {
-    redirect("/guide/closing-thoughts");
-  }
   const section = getSection(slug);
   if (!section) {
     notFound();

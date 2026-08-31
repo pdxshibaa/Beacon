@@ -1,34 +1,30 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { SearchBox } from "@/components/search-box";
-import { SearchResults } from "@/components/search-results";
+import { SearchView } from "./search-view";
 
 export const metadata: Metadata = {
   title: "Search",
 };
 
-export default async function SearchPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ q?: string }>;
-}) {
-  const { q = "" } = await searchParams;
-  const query = q.trim();
-
+function SearchFallback() {
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
       <div className="mx-auto max-w-3xl space-y-6">
         <div className="space-y-3">
           <h1 className="font-heading text-3xl tracking-tight">Search</h1>
-          <SearchBox size="hero" initialQuery={query} />
+          <SearchBox size="hero" />
         </div>
-        {query ? (
-          <p className="text-sm text-muted-foreground">
-            Results for “{query}”
-          </p>
-        ) : null}
-        <SearchResults query={query} />
       </div>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<SearchFallback />}>
+      <SearchView />
+    </Suspense>
   );
 }

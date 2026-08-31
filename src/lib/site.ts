@@ -1,6 +1,7 @@
 /** Licensing lines from the Beacon GitHub README. */
 export const site = {
   name: "Beacon",
+  url: "https://beaconforfamilies.org",
   codeLicense: "website code is shared under the MIT license",
   contentLicense:
     "website content is shared under Creative Commons (CC BY-NC 4.0)",
