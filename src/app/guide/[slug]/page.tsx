@@ -92,8 +92,16 @@ export default async function GuideSectionPage({
             : "min-w-0 max-w-2xl flex-1"
         }
       >
-        <h1 className="font-heading text-3xl leading-tight tracking-tight text-foreground sm:text-4xl">
-          {section.title}
+        <h1 className="flex items-start gap-3 font-heading text-3xl leading-tight tracking-tight text-foreground sm:text-4xl">
+          <span className="min-w-0 flex-1">{section.title}</span>
+          <img
+            src="/images/lighthouse.png"
+            alt=""
+            width={64}
+            height={64}
+            className="mt-0.5 size-10 shrink-0 rounded-md object-cover sm:size-12"
+            aria-hidden="true"
+          />
         </h1>
         {warningSignsLayout ? (
           <>
