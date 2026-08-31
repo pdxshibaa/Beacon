@@ -7,5 +7,5 @@ export const site = {
   contentShare:
     "Anyone can share or adapt the content for non-commercial purposes only.",
   /** Public address on the feedback page. Shown on the page and used for mailto. */
-  feedbackEmail: "",
+  feedbackEmail: "hello@beaconforfamilies.org",
 } as const;
