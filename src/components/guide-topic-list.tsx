@@ -40,16 +40,42 @@ function TopicGlance({
       <h2 className="font-heading text-lg font-semibold tracking-tight text-foreground sm:text-xl">
         {topic.title}
       </h2>
+      {topic.preview ? (
+        <p className="mt-1 text-[1.0625rem] leading-relaxed text-foreground/90">
+          {topic.preview}
+        </p>
+      ) : null}
       {topic.bodyHtml ? (
         <div
           className={cn(
-            "paper-body !mt-2 leading-relaxed [&_p:last-child]:mb-0 [&_li:last-child]:mb-0",
+            "paper-body leading-relaxed [&_p:last-child]:mb-0 [&_li:last-child]:mb-0",
             spacious
               ? "text-[1.0625rem] [&_li]:mb-3 [&_h5:first-child]:mt-0 [&_h5]:mt-5 [&_ul:last-child]:mb-0 [&_h5+ul_li]:mb-1"
-              : "text-sm"
+              : "text-sm",
+            "!mt-2"
           )}
           dangerouslySetInnerHTML={{ __html: topic.bodyHtml }}
         />
+      ) : null}
+      {topic.children?.length ? (
+        <div className="mt-5 space-y-5">
+          {topic.children.map((child) => (
+            <div key={child.id} id={child.id} className="scroll-mt-8">
+              <h3 className="font-heading text-base font-semibold tracking-tight text-foreground sm:text-lg">
+                {child.title}
+              </h3>
+              {child.bodyHtml ? (
+                <div
+                  className={cn(
+                    "paper-body !mt-2 leading-relaxed [&_p:last-child]:mb-0 [&_li:last-child]:mb-0",
+                    spacious ? "text-[1.0625rem] [&_li]:mb-2" : "text-sm"
+                  )}
+                  dangerouslySetInnerHTML={{ __html: child.bodyHtml }}
+                />
+              ) : null}
+            </div>
+          ))}
+        </div>
       ) : null}
     </section>
   );

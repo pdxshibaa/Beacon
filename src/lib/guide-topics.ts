@@ -16,7 +16,7 @@ export const GLANCE_CARD_SLUGS = new Set([
   "off-campus-resources",
 ]);
 
-export const STACK_CARD_SLUGS = new Set(["planning"]);
+export const STACK_CARD_SLUGS = new Set(["planning", "system-constraints"]);
 
 export type GuideTopic = {
   id: string;

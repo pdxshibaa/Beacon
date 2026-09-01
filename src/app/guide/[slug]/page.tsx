@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ContentsNav } from "@/components/contents-nav";
@@ -17,6 +18,21 @@ import {
   splitGuideTopics,
 } from "@/lib/guide-topics";
 import { getNeighbors, getSection, paper } from "@/lib/paper";
+
+const SYSTEM_CONSTRAINTS_RELATED = [
+  {
+    slug: "hospitalization",
+    situation: "They're in the ER or admitted",
+  },
+  {
+    slug: "campus-resources",
+    situation: "They're on a college campus",
+  },
+  {
+    slug: "planning",
+    situation: "Releases, contacts, and what to have ready",
+  },
+] as const;
 
 export const dynamicParams = false;
 
@@ -195,6 +211,34 @@ export default async function GuideSectionPage({
         ) : (
           <PaperBody html={section.html} />
         )}
+        {section.slug === "system-constraints" ? (
+          <nav aria-label="Related topics" className="mt-10">
+            <h2 className="font-heading text-lg tracking-tight text-foreground">
+              Also useful
+            </h2>
+            <ul className="mt-3 divide-y divide-border border-y border-border">
+              {SYSTEM_CONSTRAINTS_RELATED.map((item) => {
+                const related = getSection(item.slug);
+                if (!related) {
+                  return null;
+                }
+                return (
+                  <li key={item.slug}>
+                    <Link
+                      href={`/guide/${related.slug}`}
+                      className="flex flex-col gap-1 py-3 text-foreground transition-colors hover:text-primary sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+                    >
+                      <span className="font-medium">{item.situation}</span>
+                      <span className="shrink-0 text-sm text-muted-foreground">
+                        {related.title}
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        ) : null}
         <SectionPager previous={previous} next={next} />
       </article>
     </div>

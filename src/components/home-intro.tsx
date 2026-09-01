@@ -8,19 +8,23 @@ import { getSection, paper } from "@/lib/paper";
 const START_HERE = [
   {
     slug: "emergency-services",
-    hint: "911, 988, and local response",
-  },
-  {
-    slug: "warning-signs",
-    hint: "What to watch for, and outpatient first",
+    situation: "someone who isn't safe, but I don't know who to call",
   },
   {
     slug: "hospitalization",
-    hint: "ER, admission, and what families can do",
+    situation: "the ER or the hospital",
+  },
+  {
+    slug: "continuing-care",
+    situation: "figuring out next steps after a psychiatric hospitalization",
   },
   {
     slug: "system-constraints",
-    hint: "HIPAA, FERPA, and what you can still share",
+    situation: "school or clinicians who won't tell me anything",
+  },
+  {
+    slug: "warning-signs",
+    situation: "behavior that seems off, but isn't an emergency yet",
   },
 ] as const;
 
@@ -60,10 +64,10 @@ export function HomeIntro() {
               There is a lot to figure out. Let's start here.
             </h1>
             <p className="mt-3 text-foreground/80">
-              Whether you’re new to mental health crises or have been navigating the system for years, this site offers a roadmap of key resources and considerations for supporting a young adult, ages 18–25.
+              Whether you’re new to mental health crises or have been navigating the system for years, this site gathers key resources and considerations for supporting a young adult, ages 18–25.
             </p>
             <p className="mt-3 text-foreground/80">
-              Families, friends, and others who are supporting a young adult: choose a topic below, search for what you need, or explore the references to learn more.
+              Families, friends, and others who are supporting a young adult: start from a situation below, search for a word you already have, or browse every topic.
             </p>
             <p className="mt-3">
               <Link
@@ -97,9 +101,9 @@ export function HomeIntro() {
 
       <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
         <h2 className="font-heading text-xl tracking-tight text-foreground sm:text-2xl">
-          Start here
+          I need help with ...
         </h2>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+        <ul className="mt-4 divide-y divide-border border-y border-border">
           {START_HERE.map((item) => {
             const section = getSection(item.slug);
             if (!section) {
@@ -109,13 +113,13 @@ export function HomeIntro() {
               <li key={item.slug}>
                 <Link
                   href={`/guide/${item.slug}`}
-                  className="flex h-full flex-col rounded-2xl border border-border bg-card p-4 text-foreground transition-all hover:-translate-y-0.5 hover:shadow-md visited:border-border/80 visited:text-muted-foreground"
+                  className="flex flex-col gap-1 py-4 text-foreground transition-colors hover:text-primary sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
                 >
                   <span className="font-heading text-lg font-semibold tracking-tight">
-                    {section.title}
+                    {item.situation}
                   </span>
-                  <span className="mt-1 text-sm text-muted-foreground">
-                    {item.hint}
+                  <span className="shrink-0 text-sm text-muted-foreground">
+                    {section.title}
                   </span>
                 </Link>
               </li>
