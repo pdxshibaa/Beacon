@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 };
 
 const NOTES = [
-  "Do not use Project Beacon as a crisis line or a source of personal or medical advice.",
-  "Do not email to ask for help with an immediate crisis or for advice about a specific situation.",
-  "Do not send names, medical or legal records, or a detailed account of your family’s situation. This is not a confidential email, and I cannot maintain confidential information. You do not need to share identifying or private details for your feedback to be useful.",
+  "Project Beacon is not a crisis line or a source of personal or medical advice. It provides general strategies drawn from collective lived experiences.",
+  "Project Beacon cannot address a personal situation.",
+  "Do not include personal, medical or legal records in your feedback. This is not a confidential email, and I cannot maintain confidential information. You do not need to share private details for your feedback to be useful.",
   "Please keep your feedback focused on the site, its information, and your experience using it. Thank you for helping make Project Beacon better.",
 ];
 
