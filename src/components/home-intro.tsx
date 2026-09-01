@@ -67,7 +67,7 @@ export function HomeIntro() {
               Whether you’re new to mental health crises or have been navigating the system for years, this site gathers key resources and considerations for supporting a young adult, ages 18–25.
             </p>
             <p className="mt-3 text-foreground/80">
-              Families, friends, and others: start from a situation below, search for a word you already have, or browse every topic.
+              Families, friends, and others: start from a situation listed below, use the search bar, or browse the topics.
             </p>
             <p className="mt-3">
               <Link
