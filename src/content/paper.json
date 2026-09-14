@@ -369,20 +369,10 @@
       ]
     },
     {
-      "slug": "closing-thoughts",
-      "number": "15",
-      "title": "Closing Thoughts",
-      "heading": "15. Closing Thoughts",
-      "html": [
-        "<p>Parting words of wisdom? </p>",
-        "<p><strong>Key takeaways from this website will be highlighted here. </strong></p>"
-      ]
-    },
-    {
       "slug": "references",
-      "number": "16",
+      "number": "15",
       "title": "References",
-      "heading": "16. References",
+      "heading": "15. References",
       "html": [
         "<p><a href=\"https://988lifeline.org/\" rel=\"noopener noreferrer\" target=\"_blank\">https://988lifeline.org/</a></p>",
         "<p><a href=\"https://www.thenationalcouncil.org/988-and-911/\" rel=\"noopener noreferrer\" target=\"_blank\">https://www.thenationalcouncil.org/988-and-911/</a></p>",
