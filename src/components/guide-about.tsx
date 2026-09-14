@@ -46,7 +46,7 @@ export function GuideAbout() {
       <Html html={intro.scopeHtml} />
       <div className="rounded-2xl border border-border bg-card p-5">
         <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-          Limited engagement
+          <span className="limited-engagement">Limited engagement</span>
         </p>
         <Html html={intro.limitedHtml} className="mt-3" />
       </div>

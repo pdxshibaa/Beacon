@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { searchGuide } from "@/lib/search";
+import { markLimitedEngagement } from "@/components/limited-engagement-mark";
 
 function highlight(text: string, query: string) {
   const terms = query
@@ -85,7 +86,7 @@ export function SearchResults({ query }: { query: string }) {
             className="block rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
           >
             <p className="font-heading text-lg font-semibold tracking-tight text-foreground">
-              {hit.heading}
+              {markLimitedEngagement(hit.heading)}
             </p>
             {hit.heading !== hit.sectionTitle ? (
               <p className="mt-0.5 text-sm text-muted-foreground">

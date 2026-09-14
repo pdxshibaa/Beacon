@@ -9,4 +9,6 @@ export const site = {
     "Anyone can share or adapt the content for non-commercial purposes only.",
   /** Public address on the feedback page. Shown on the page and used for mailto. */
   feedbackEmail: "hello@beaconforfamilies.org",
+  limitedEngagementDefinition:
+    "Limited Engagement refers to situations where a young adult is only partly engaging, inconsistently engaging, or refusing to engage with parents, providers, school supports, or some combination of these.",
 } as const;

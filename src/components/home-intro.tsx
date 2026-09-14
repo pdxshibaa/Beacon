@@ -8,23 +8,23 @@ import { getSection, paper } from "@/lib/paper";
 const START_HERE = [
   {
     slug: "emergency-services",
-    situation: "someone who isn't safe, but I don't know who to call",
+    situation: "... someone who isn't safe, but I don't know who to call.",
   },
   {
     slug: "hospitalization",
-    situation: "the ER or the hospital",
+    situation: "... the ER or the hospital.",
   },
   {
     slug: "continuing-care",
-    situation: "figuring out next steps after a psychiatric hospitalization",
+    situation: "... figuring out next steps after a psychiatric hospitalization.",
   },
   {
     slug: "system-constraints",
-    situation: "school or clinicians who won't tell me anything",
+    situation: "... school or clinicians who won't tell me anything.",
   },
   {
     slug: "warning-signs",
-    situation: "behavior that seems off, but isn't an emergency yet",
+    situation: "... behavior that seems off, but isn't an emergency yet.",
   },
 ] as const;
 

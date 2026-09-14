@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 import type { GuideTopic } from "@/lib/guide-topics";
 import { cn } from "@/lib/utils";
+import { markLimitedEngagement } from "@/components/limited-engagement-mark";
 
 function TopicBanner({ topic }: { topic: GuideTopic }) {
   return (
@@ -13,7 +14,7 @@ function TopicBanner({ topic }: { topic: GuideTopic }) {
       className="scroll-mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-0.5 rounded-xl border border-border bg-card px-4 py-2.5 shadow-sm sm:px-5"
     >
       <h2 className="font-heading text-lg font-semibold tracking-tight text-foreground">
-        {topic.title}
+        {markLimitedEngagement(topic.title)}
       </h2>
       {topic.bodyHtml ? (
         <div
@@ -38,7 +39,7 @@ function TopicGlance({
       className="scroll-mt-8 rounded-2xl border border-border bg-card px-4 py-4 shadow-sm sm:px-5"
     >
       <h2 className="font-heading text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-        {topic.title}
+        {markLimitedEngagement(topic.title)}
       </h2>
       {topic.preview ? (
         <p className="mt-1 text-[1.0625rem] leading-relaxed text-foreground/90">
@@ -62,7 +63,7 @@ function TopicGlance({
           {topic.children.map((child) => (
             <div key={child.id} id={child.id} className="scroll-mt-8">
               <h3 className="font-heading text-base font-semibold tracking-tight text-foreground sm:text-lg">
-                {child.title}
+                {markLimitedEngagement(child.title)}
               </h3>
               {child.bodyHtml ? (
                 <div
@@ -88,7 +89,7 @@ function TopicStatic({ topic }: { topic: GuideTopic }) {
       className="scroll-mt-8 rounded-2xl border border-border bg-card px-4 py-3 shadow-sm sm:px-5 sm:py-4"
     >
       <h3 className="font-heading text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-        {topic.title}
+        {markLimitedEngagement(topic.title)}
       </h3>
       {topic.preview ? (
         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
@@ -119,7 +120,7 @@ function TopicDetails({
               nested ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"
             )}
           >
-            {topic.title}
+            {markLimitedEngagement(topic.title)}
           </span>
           {topic.preview ? (
             <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
@@ -150,7 +151,7 @@ function TopicCard({ topic }: { topic: GuideTopic }) {
         className="scroll-mt-8 rounded-2xl border border-border bg-card px-4 py-4 shadow-sm sm:px-5"
       >
         <h2 className="font-heading text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-          {topic.title}
+          {markLimitedEngagement(topic.title)}
         </h2>
         {topic.preview ? (
           <p className="mt-1 text-sm leading-relaxed text-muted-foreground">

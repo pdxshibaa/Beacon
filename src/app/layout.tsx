@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { LimitedEngagementTips } from "@/components/limited-engagement-tips";
 import { paper } from "@/lib/paper";
 import { site } from "@/lib/site";
 
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <SiteHeader />
+        <LimitedEngagementTips />
         <div className="flex flex-1 flex-col">{children}</div>
         <SiteFooter />
       </body>
