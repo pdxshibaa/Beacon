@@ -4,7 +4,7 @@
   "subtitle": "Strategies and Insights From Collective Lived Experiences",
   "authors": "From Project Beacon: parents, caregivers, community members, and professionals who work with emerging adults.",
   "year": "2026",
-  "draftNotice": "© 2026 Project Beacon. Initial Draft Working Document for Collaborative Review.",
+  "draftNotice": "© 2026 Project Beacon. Initial Draft Website for Collaborative Review.",
   "sections": [
     {
       "slug": "introduction",
@@ -217,6 +217,7 @@
       "heading": "9. Campus Resources",
       "html": [
         "<p>College campuses today offer multiple mental health resources. The availability and responsiveness of these resources, and coordination between them, vary widely. </p>",
+       "<p><strong>Look up and store relevant numbers in the young adult’s contact entry in your phone, under the notes section (or anywhere easily accessible) for faster access during crises.</strong></p>",
         "<p><strong>University Police Department</strong> </p>",
         "<p>This department may respond if you call 911 from a phone on campus, or you may call the campus police non-emergency number. They may also complete wellness checks.</p>",
         "<p><strong>Counseling and Psychological Services</strong> </p>",
@@ -229,9 +230,7 @@
         "<p>Staff help students with diagnosed medical and mental health conditions obtain learning accommodations.</p>",
         "<p><strong>Blue Light Phones</strong></p>",
         "<p>Some campuses have emergency phones positioned around campus to use if an urgent safety concern arises.</p>",
-        "<p>Other services that may be present on the college campus include a Crisis Response Team, Crisis Text Line, a University hospital, and more. Research those numbers now and write them below. </p>",
-        "<p><em>Some families store these numbers in their young adult’s contact entry or notes section for faster access during crises.</em></p>"
-      ]
+        "<p>Other services that may be present on the college campus include a Crisis Response Team, Crisis Text Line, a University hospital, and more. Research these numbers now. </p>"      ]
     },
     {
       "slug": "off-campus-resources",
@@ -240,6 +239,7 @@
       "heading": "10. Off-Campus Resources",
       "html": [
         "<p>Off-campus resources are useful for young adults who do not live on a college campus. </p>",
+        "<p><strong>Look up and store relevant numbers in the young adult’s contact entry in your phone, under the notes section (or anywhere easily accessible) for faster access during crises.</strong></p>",
         "<p><strong>911/988</strong></p>",
         "<p>See <a href=\"/guide/emergency-services\">Emergency Services</a>. </p>",
         "<p><strong>Local Hospital / Local Psychiatric Emergency Services</strong></p>",
@@ -256,8 +256,7 @@
         "<p><strong>AA and Al-Anon Family Groups</strong></p>",
         "<p>AA is for alcoholics while Al-Anon is for anyone who has an alcoholic in their life. People with co-occurring alcohol abuse and mental health challenges may find structure and support in AA's 12-step program. Family members find community and support in al-anon family groups. </p>",
         "<p><a href=\"https://al-anon.org/\" rel=\"noopener noreferrer\" target=\"_blank\">Find Al-Anon</a></p>",
-        "<p>Other resources will vary by county and state. You may find more if you research the county resources available in your area.</p>"
-      ]
+        "<p>Other resources will vary by county and state. You may find more if you research the county resources available in your area.</p>"      ]
     },
     {
       "slug": "complicating-factors",
