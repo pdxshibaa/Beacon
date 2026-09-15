@@ -3,7 +3,6 @@ import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { LimitedEngagementTips } from "@/components/limited-engagement-tips";
-import { paper } from "@/lib/paper";
 import { site } from "@/lib/site";
 
 import "./globals.css";
@@ -21,10 +20,16 @@ const sourceSerif = Source_Serif_4({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${paper.title} — ${site.name}`,
+    default: `${site.homeTitle} — ${site.name}`,
     template: `%s — ${site.name}`,
   },
-  description: paper.subtitle,
+  description: site.description,
+  openGraph: {
+    url: site.url,
+    siteName: site.name,
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

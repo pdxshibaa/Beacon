@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { SearchBox } from "@/components/search-box";
+import { pageDescriptions } from "@/content/page-descriptions";
 import { SearchView } from "./search-view";
 
 export const metadata: Metadata = {
   title: "Search",
+  description: pageDescriptions.search,
 };
 
 function SearchFallback() {

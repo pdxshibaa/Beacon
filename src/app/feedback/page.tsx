@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { FeedbackForm } from "@/components/feedback-form";
+import { pageDescriptions } from "@/content/page-descriptions";
 
 export const metadata: Metadata = {
   title: "Help improve Project Beacon",
+  description: pageDescriptions.feedback,
 };
 
 const NOTES = [

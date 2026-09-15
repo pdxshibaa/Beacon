@@ -1,4 +1,5 @@
 import paperJson from "@/content/paper.json";
+import { htmlToText } from "@/lib/html-text";
 
 export type PaperSection = {
   slug: string;
@@ -59,6 +60,28 @@ export function firstSentence(html: string): string {
     return sentence;
   }
   return `${sentence.slice(0, 137).replace(/\s+\S*$/, "")}…`;
+}
+
+const META_DESCRIPTION_MAX = 160;
+
+/** First paragraphs on a page, trimmed to a Google-length snippet. */
+export function pageDescription(html: string): string {
+  const paragraphs = [...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
+    .map((match) => htmlToText(match[1]))
+    .filter(Boolean);
+  const text = paragraphs.join(" ");
+  if (!text) {
+    return "";
+  }
+  if (text.length <= META_DESCRIPTION_MAX) {
+    return text;
+  }
+  const truncated = text.slice(0, META_DESCRIPTION_MAX);
+  const sentenceEnd = truncated.lastIndexOf(". ");
+  if (sentenceEnd >= 80) {
+    return truncated.slice(0, sentenceEnd + 1);
+  }
+  return `${truncated.replace(/\s+\S*$/, "")}…`;
 }
 
 export function getNeighbors(slug: string): {

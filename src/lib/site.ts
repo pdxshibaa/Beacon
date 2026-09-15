@@ -1,7 +1,14 @@
+import { pageDescriptions } from "@/content/page-descriptions";
+
 /** Licensing lines from the Beacon GitHub README. */
 export const site = {
   name: "Beacon",
   url: "https://beaconforfamilies.org",
+  /** Homepage browser tab and Google result title. Uses the guide eyebrow. */
+  homeTitle:
+    "When a college-age young adult is having a mental health crisis",
+  /** Homepage Google snippet. Edit in src/content/page-descriptions.ts. */
+  description: pageDescriptions.home,
   codeLicense: "website code is shared under the MIT license",
   contentLicense:
     "website content is shared under Creative Commons (CC BY-NC 4.0)",

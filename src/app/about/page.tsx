@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { GuideAbout } from "@/components/guide-about";
+import { pageDescriptions } from "@/content/page-descriptions";
 
 export const metadata: Metadata = {
   title: "About this guide",
+  description: pageDescriptions.about,
 };
 
 export default function AboutPage() {
