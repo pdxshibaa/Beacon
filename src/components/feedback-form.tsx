@@ -36,7 +36,7 @@ export function FeedbackForm() {
     <form className="mt-6 space-y-4" onSubmit={onSubmit}>
       <div>
         <label htmlFor="feedback-page" className="block text-sm font-medium">
-          Page or topic (optional)
+          Or send us an email. Subject (optional):
         </label>
         <input
           id="feedback-page"
@@ -48,8 +48,7 @@ export function FeedbackForm() {
       </div>
       <div>
         <label htmlFor="feedback-notes" className="block text-sm font-medium">
-          Your notes
-        </label>
+          Type your feedback below, then click “Email your feedback” to open your email app and send it to us.</label>
         <textarea
           id="feedback-notes"
           name="notes"

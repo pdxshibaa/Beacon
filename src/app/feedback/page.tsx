@@ -59,7 +59,7 @@ export default function FeedbackPage() {
             <li key={topic}>{topic}</li>
           ))}
         </ul>
-        <p>You can share that in a short form, or email it below.</p>
+        <p>You can share that in a short form:</p>
         <p>
           <a
             href={site.feedbackFormUrl}
