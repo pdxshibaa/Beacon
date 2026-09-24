@@ -65,7 +65,7 @@ export function FeedbackForm() {
         Email your feedback
       </button>
       <p className="text-sm text-muted-foreground">
-        If the button does not open your email, please send your feedback to{" "}
+        You may also send questions, comments, and feedback to{" "}
         <a
           className="text-primary underline underline-offset-4"
           href={`mailto:${email}?subject=${encodeURIComponent("Help improve Project Beacon")}`}

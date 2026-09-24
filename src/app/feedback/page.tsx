@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { FeedbackForm } from "@/components/feedback-form";
 import { pageDescriptions } from "@/content/page-descriptions";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Help improve Project Beacon",
@@ -19,7 +20,7 @@ const NOTES = [
 const TOPICS = [
   "A page or topic that was confusing or difficult to find",
   "Something important that is missing",
-  "An error or outdated information",
+  "An error, outdated information, or a broken link",
   "Information that doesn’t match your experience",
   "A resource or perspective that should be included",
   "Anything else that could make the site more useful",
@@ -52,12 +53,23 @@ export default function FeedbackPage() {
             ))}
           </ul>
         </aside>
-        <p>Please email us about any of the following feedback:</p>
+        <p>Helpful feedback topics:</p>
         <ul className="list-disc space-y-2 pl-5">
           {TOPICS.map((topic) => (
             <li key={topic}>{topic}</li>
           ))}
         </ul>
+        <p>You can share that in a short form, or email it below.</p>
+        <p>
+          <a
+            href={site.feedbackFormUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+          >
+            Open the feedback form
+          </a>
+        </p>
       </div>
       <FeedbackForm />
     </div>

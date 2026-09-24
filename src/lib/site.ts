@@ -16,6 +16,9 @@ export const site = {
     "Anyone can share or adapt the content for non-commercial purposes only.",
   /** Public address on the feedback page. Shown on the page and used for mailto. */
   feedbackEmail: "hello@beaconforfamilies.org",
+  /** Google Form linked from the feedback page. */
+  feedbackFormUrl:
+    "https://docs.google.com/forms/d/e/1FAIpQLSegV3P1kB9VdA9vJVQ3lWSv9sIa-clAS9P1PmX_ojfxBzCnig/viewform",
   /** Google Search Console HTML tag verification. */
   googleSiteVerification: "WClE6R_w-lYqwERnVTYvIVrAvd6oV19C7kWJqRO1H3Y",
   limitedEngagementDefinition:
