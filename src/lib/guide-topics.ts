@@ -339,7 +339,7 @@ function applyPageOptions(topics: GuideTopic[], slug: string): GuideTopic[] {
         title,
         children: topic.children.map((child) =>
           /^Insight\/Awareness$/i.test(child.title)
-            ? { ...child, static: true }
+            ? { ...child, preview: "", static: true }
             : child
         ),
       };

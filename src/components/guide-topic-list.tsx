@@ -96,6 +96,12 @@ function TopicStatic({ topic }: { topic: GuideTopic }) {
           {topic.preview}
         </p>
       ) : null}
+      {topic.bodyHtml ? (
+        <div
+          className="paper-body !mt-2 text-sm leading-relaxed [&_li:last-child]:mb-0 [&_p:last-child]:mb-0 [&_ul:last-child]:mb-0"
+          dangerouslySetInnerHTML={{ __html: topic.bodyHtml }}
+        />
+      ) : null}
     </section>
   );
 }

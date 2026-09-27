@@ -276,14 +276,15 @@
         "<h4><a id=\"_84k5evi6o3wf\"></a>Treatment Complexity</h4>",
         "<h5><a id=\"medication-management\"></a>Medication Management</h5>",
         "<p>Psychiatric medication is far from an exact science. Even when the diagnosis seems clear, it often takes trial and error to find the best medications for each person. If the diagnosis is unclear, the process could be even longer. Side effects may hit each person differently. Caregivers may help by showing patience, validating the young adult’s emotions, and encouraging them to stick with the often frustrating process.</p>",
-        "<h5><a id=\"_6a3e82fojsz7\"></a>Insight/Awareness</h5>",
-        "<p>The young adult may have varying amounts of insight into their illness.</p>",
-        "<h5><a id=\"refusal-of-care\"></a>Refusal of care, lack of insight, anosognosia</h5>",
-        "<p>Serious mental illness may impair a person’s ability to recognize that they need treatment. This is called anosognosia, a neurologically based lack of insight. In many situations, refusing care is driven by the illness itself rather than defiance.</p>",
-        "<h5><a id=\"delusions\"></a>Delusions involving Family, School, Institutions</h5>",
-        "<p>Psychosis and paranoia may distort reality. People who were once seen as safe might now be seen as threatening. Trying to disprove delusions may increase mistrust. It's common for delusions to involve the people closest to the individual.</p>",
-        "<h5><a id=\"acceptance-of-a-diagnosis\"></a>Acceptance of a Diagnosis</h5>",
-        "<p>Some patients have a hard time accepting a particular diagnosis. It often helps to encourage treating symptoms and focusing on shared goals rather than debating the diagnosis. </p>",
+        "<h5><a id=\"_6a3e82fojsz7\"></a><a id=\"refusal-of-care\"></a>Insight and Awareness</h5>",
+        "<ul>",
+        "<li>The young adult may have varying amounts of insight into their illness.</li>",
+        "<li>Serious mental illness may impair a person’s ability to recognize that they need treatment. This is called anosognosia, a neurologically based lack of insight. Refusing care may be driven by the illness itself.</li>",
+        "</ul>",
+        "<h5><a id=\"delusions\"></a>Delusions Involving People or Institutions</h5>",
+        "<p>Psychosis and paranoia may distort reality. People who were once seen as safe might now be seen as threatening. Trying to disprove delusions may increase mistrust.</p>",
+        "<h5><a id=\"questions-about-a-diagnosis\"></a>Questions About a Diagnosis</h5>",
+        "<p>Some patients have concerns about a particular diagnosis, and diagnoses may change over time. It often helps to focus on treating symptoms and finding shared goals rather than debating the diagnosis. </p>",
         "<h4><a id=\"_gsxi9nnezcu8\"></a>Impact on Daily Life</h4>",
         "<p>Mental health crises may destabilize the factors that help you take care of your basic needs.</p>",
         "<h5><a id=\"daily-functioning\"></a>Daily Functioning</h5>",
@@ -294,7 +295,7 @@
         "<p>During a mental health crisis, relationships shift, and it's natural to feel strain. Caregivers may be thrust back into roles they thought had ended, and young adults may struggle with needing help at a time when they expected more independence.</p>",
         "<p>Reduced contact, or no contact, rarely has a single explanation. Common factors are interpersonal conflict, influence from a partner, family conflict after a divorce, professionals working with limited context, symptoms related to mental illness, or distorted beliefs. Caregivers may replay memories and question themselves. Some self-reflection is valuable, but be cautious about coming up with a simple explanation when mental illness may be affecting perception.</p>",
         "<h4><a id=\"_d9wtmhcg1a5\"></a>Transitions in Care</h4>",
-        "<p>Any time the young adult moves between levels of care (for example, from the hospital to a PHP, or from an IOP to an outpatient care team) or from one clinician to another, it may be a useful and necessary step, but it also introduces some complexity. When transitions don’t go smoothly, caregivers often need to pick up the slack. Waitlists, transportation, even housing, medications, and safety in general may sometimes fall on the caregiver. Advocate for assistance from their former/new providers and use community resources to help. </p>"
+        "<p>Any time the young adult moves between levels of care (for example, from the hospital to a PHP, or from an IOP to an outpatient care team) or from one clinician to another, the transition may introduce some complexity. When transitions don’t go smoothly, caregivers may need to step in and help. Waitlists, transportation, even housing, medications, and safety in general may sometimes fall on the caregiver. Advocate for assistance from their former/new providers and use community resources to help. </p>"
       ]
     },
     {
