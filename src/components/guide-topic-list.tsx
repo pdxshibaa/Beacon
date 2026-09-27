@@ -129,7 +129,7 @@ function TopicDetails({
             {markLimitedEngagement(topic.title)}
           </span>
           {topic.preview ? (
-            <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
+            <span className="mt-1 block text-[1.0625rem] leading-[1.7] text-foreground">
               {topic.preview}
             </span>
           ) : null}
