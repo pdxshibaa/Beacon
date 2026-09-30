@@ -408,7 +408,12 @@ function isStrongTitleParagraph(html: string): boolean {
     return false;
   }
   const text = htmlToText(trimmed);
-  return text.length > 0 && text.length < 100 && !/[.!?]./.test(text);
+  return (
+    text.length > 0 &&
+    text.length < 100 &&
+    !/[.!?]./.test(text) &&
+    !/[.!?]$/.test(text)
+  );
 }
 
 function isLinkOnlyParagraph(html: string): boolean {
