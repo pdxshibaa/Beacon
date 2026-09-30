@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { getIntroContent } from "@/lib/intro";
 import { paper } from "@/lib/paper";
+import { site } from "@/lib/site";
 
 function Html({
   html,
@@ -26,6 +27,7 @@ export function GuideAbout() {
 
   return (
     <div className="space-y-5 text-base leading-relaxed text-foreground/90">
+      <p className="text-foreground/80">{paper.subtitle}</p>
       <Html html={intro.leadHtml} />
       <div>
         <p className="mt-2">{intro.factorLead}</p>
@@ -60,7 +62,7 @@ export function GuideAbout() {
           href="/feedback"
           className="text-primary underline-offset-4 hover:underline"
         >
-          Help improve Project Beacon
+          Help improve {site.name}
         </Link>
       </p>
     </div>

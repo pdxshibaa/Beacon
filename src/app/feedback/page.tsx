@@ -6,15 +6,15 @@ import { pageDescriptions } from "@/content/page-descriptions";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Help improve Project Beacon",
+  title: { absolute: `Help improve ${site.name}` },
   description: pageDescriptions.feedback,
 };
 
 const NOTES = [
-  "Project Beacon is not a crisis line or a source of personal or medical advice. It provides general strategies drawn from collective lived experiences.",
-  "Project Beacon cannot address a personal situation.",
+  `${site.name} is not a crisis line or a source of personal or medical advice. It provides general strategies drawn from collective lived experiences.`,
+  `${site.name} cannot address a personal situation.`,
   "Do not include personal, medical or legal records in your feedback. This is not a confidential email, and I cannot maintain confidential information. You do not need to share private details for your feedback to be useful.",
-  "Please keep your feedback focused on the site, its information, and your experience using it. Thank you for helping make Project Beacon better.",
+  `Please keep your feedback focused on the site, its information, and your experience using it. Thank you for helping make ${site.name} better.`,
 ];
 
 const TOPICS = [
@@ -35,11 +35,11 @@ export default function FeedbackPage() {
         </Link>
       </p>
       <h1 className="mt-4 font-heading text-3xl tracking-tight text-foreground sm:text-4xl">
-        Help Improve Project Beacon
+        Help improve {site.name}
       </h1>
       <div className="mt-6 space-y-4 text-base leading-relaxed text-foreground/90">
         <p>
-          Project Beacon is a public draft and is still being revised. If
+          {site.name} is a public draft and is still being revised. If
           you’ve used the site, your feedback can help make it more useful and
           easier to navigate for the people who need it.
         </p>

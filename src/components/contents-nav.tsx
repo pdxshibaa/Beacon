@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { topicSections } from "@/lib/paper";
+import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function ContentsNav({
@@ -42,7 +43,7 @@ export function ContentsNav({
             href="/feedback"
             className="block rounded-md px-2 py-1 leading-snug text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
-            Help improve Project Beacon
+            Help improve {site.name}
           </Link>
         </li>
         {topicSections.map((section) => {

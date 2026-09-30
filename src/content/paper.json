@@ -1,10 +1,10 @@
 {
   "eyebrow": "When a college-age young adult is having a mental health crisis",
-  "title": "Recognizing and Responding to Mental Health Crises",
-  "subtitle": "Strategies and Insights From Collective Lived Experiences",
-  "authors": "From Project Beacon: parents, caregivers, community members, and professionals who work with emerging adults.",
+  "title": "Beacon for Families",
+  "subtitle": "A practical guide for those supporting a college-aged adult through a mental health crisis.",
+  "authors": "Beacon for Families: parents, caregivers, community members, and professionals who work with emerging adults.",
   "year": "2026",
-  "draftNotice": "© 2026 Project Beacon. Initial Draft Website for Collaborative Review.",
+  "draftNotice": "© 2026 Beacon for Families. Draft Website for Collaborative Review.",
   "sections": [
     {
       "slug": "introduction",
@@ -96,7 +96,7 @@
       "title": "Example Crisis Decision Tree for an Active Crisis",
       "heading": "4. Example Crisis Decision Tree for an Active Crisis",
       "html": [
-        "<p>This <a href=\"https://drive.google.com/file/d/1I1Mos8KtrpYIB6tIXmMY_xN7fkb8Orh9/view?usp=sharing\" rel=\"noopener noreferrer\" target=\"_blank\">decision tree</a> shows examples of choices that need to be made when a young adult is thinking of harming themself or others, or showing other signs of crisis. Every situation is different, so families may adapt these ideas to their own circumstances. Consult a mental health professional, crisis line, or emergency services if you need help deciding what steps to take.</p>",
+        "<p>This <a href=\"https://drive.google.com/file/d/10q5i4i6jllb3bLQy3U6O4tASEGWUp6N9/view?usp=sharing\" rel=\"noopener noreferrer\" target=\"_blank\">decision tree</a> shows examples of choices that need to be made when a young adult is thinking of harming themself or others, or showing other signs of crisis. Every situation is different, so families may adapt these ideas to their own circumstances. Consult a mental health professional, crisis line, or emergency services if you need help deciding what steps to take.</p>",
         "<p><img alt=\"Example Crisis Decision Tree\" class=\"decision-tree\" src=\"/images/decision-tree.png\"/></p>"
       ]
     },

@@ -24,7 +24,7 @@ export function FeedbackForm() {
     ]
       .filter(Boolean)
       .join("\n\n");
-    const href = `mailto:${email}?subject=${encodeURIComponent("Help improve Project Beacon")}&body=${encodeURIComponent(body)}`;
+    const href = `mailto:${email}?subject=${encodeURIComponent(`Help improve ${site.name}`)}&body=${encodeURIComponent(body)}`;
     window.location.href = href;
   }
 
@@ -67,7 +67,7 @@ export function FeedbackForm() {
         You may also send questions, comments, and feedback to{" "}
         <a
           className="text-primary underline underline-offset-4"
-          href={`mailto:${email}?subject=${encodeURIComponent("Help improve Project Beacon")}`}
+          href={`mailto:${email}?subject=${encodeURIComponent(`Help improve ${site.name}`)}`}
         >
           {email}
         </a>

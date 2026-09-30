@@ -8,13 +8,13 @@
  * page; do not add new advice.
  */
 export const pageDescriptions = {
-  home: "A guide for parents and caregivers of college-aged young adults (18–25) on mental health crises, 911 and 988, hospitalization, HIPAA and FERPA, and limited engagement.",
+  home: "A guide for parents and families supporting a college-aged young adult through a mental health crises, 911 and 988, hospitalization, HIPAA and FERPA, and limited engagement.",
   about:
-    "This guide was written for parents and caregivers of college-aged young adults (roughly ages 18–25) who want to learn how to respond to a mental health crisis.",
+    "This guide was written for parents and families of college-aged young adults (roughly ages 18–25) who want to learn how to respond to a mental health crisis.",
   search:
     "Search this guide for HIPAA, FERPA, 988, 911, hospitalization, limited engagement, and other topics.",
   feedback:
-    "Share feedback about this guide. Project Beacon is not a crisis line or a source of personal or medical advice.",
+    "Share feedback about this guide. Beacon for Families is not a crisis line or a source of personal or medical advice.",
   "warning-signs":
     "Early warning signs can be easy to miss at this age. Young adults may mask or minimize symptoms, or seem fine while struggling.",
   "emergency-services":

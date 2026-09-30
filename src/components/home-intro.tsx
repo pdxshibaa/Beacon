@@ -4,6 +4,7 @@ import { ArrowRight, Phone } from "lucide-react";
 import { SearchBox } from "@/components/search-box";
 import { TopicCards } from "@/components/topic-cards";
 import { getSection, paper } from "@/lib/paper";
+import { site } from "@/lib/site";
 
 const START_HERE = [
   {
@@ -57,17 +58,19 @@ export function HomeIntro() {
       <section className="home-hero border-b border-border/70">
         <div className="mx-auto flex max-w-6xl items-start gap-4 px-4 py-8 sm:gap-6 sm:px-6 sm:py-10">
           <div className="min-w-0 max-w-2xl flex-1">
-            <p className="text-sm font-medium tracking-wide text-primary uppercase">
-              {paper.eyebrow}
+            <p className="text-base leading-snug text-foreground/80">
+              {paper.subtitle}
             </p>
-            <h1 className="mt-2 font-heading text-3xl leading-[1.15] tracking-tight text-foreground sm:text-4xl">
-              There is a lot to figure out. Let's start here.
+            <h1 className="mt-3 font-heading text-3xl leading-[1.15] tracking-tight text-foreground sm:text-4xl">
+              There is a lot to figure out.
+              <br />
+              Let&apos;s start here.
             </h1>
             <p className="mt-3 text-foreground/80">
               Whether you’re new to mental health crises or have been navigating the system for years, this site gathers key resources and considerations for supporting a young adult, ages 18–25.
             </p>
             <p className="mt-3 text-foreground/80">
-              Families, friends, and others: start from a situation listed below, use the search bar, or browse the topics.
+              Start from a situation listed below, use the search bar, or browse the topics.
             </p>
             <p className="mt-3">
               <Link
@@ -81,7 +84,7 @@ export function HomeIntro() {
                 href="/feedback"
                 className="text-sm text-primary underline-offset-4 hover:underline"
               >
-                Help improve Project Beacon
+                Help improve {site.name}
               </Link>
             </p>
             <div className="mt-6 max-w-xl">

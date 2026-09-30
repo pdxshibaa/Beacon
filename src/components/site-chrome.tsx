@@ -54,7 +54,7 @@ export function SiteFooter() {
             href="/feedback"
             className="text-foreground/80 underline-offset-4 hover:underline"
           >
-            Help improve Project Beacon
+            Help improve {site.name}
           </Link>
         </p>
         <p>{paper.draftNotice}</p>
