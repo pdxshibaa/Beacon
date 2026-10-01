@@ -61,27 +61,69 @@ function consumePreviewFromHtml(innerHtml: string, preview: string): string | nu
   return null;
 }
 
-function restAfterPreview(bodyHtml: string, preview: string): string {
-  const match = bodyHtml.match(/^(<p\b[^>]*>)(\s*)([\s\S]*)$/i);
-  if (!match || !preview) {
-    return bodyHtml;
+function stripConsumedBlock(
+  bodyHtml: string,
+  preview: string,
+  pattern: RegExp,
+  closeTag: RegExp
+): string | null {
+  const match = bodyHtml.match(pattern);
+  if (!match) {
+    return null;
   }
-  const [, open, space, rest] = match;
-  const close = rest.match(/<\/p>/i);
+  const open = match[1];
+  const space = match[2];
+  const rest = match[3];
+  const close = rest.match(closeTag);
   if (!close || close.index === undefined) {
-    return bodyHtml;
+    return null;
   }
   const leftoverInner = consumePreviewFromHtml(rest.slice(0, close.index), preview);
   if (leftoverInner === null) {
-    return bodyHtml;
+    return null;
   }
-  const afterP = rest.slice(close.index);
+  const after = rest.slice(close.index);
   const leftover = leftoverInner.replace(/^\s+/, "");
   if (!htmlToText(leftover)) {
-    const remainder = afterP.replace(/^<\/p>\s*/i, "");
-    return htmlToText(remainder) ? remainder : "";
+    return after.replace(closeTag, "").replace(/^\s+/, "");
   }
-  return `${open}${space}${leftover}${afterP}`;
+  return `${open}${space}${leftover}${after}`;
+}
+
+function restAfterPreview(bodyHtml: string, preview: string): string {
+  if (!preview) {
+    return bodyHtml;
+  }
+
+  const fromParagraph = stripConsumedBlock(
+    bodyHtml,
+    preview,
+    /^(<p\b[^>]*>)(\s*)([\s\S]*)$/i,
+    /<\/p>/i
+  );
+  if (fromParagraph !== null) {
+    return htmlToText(fromParagraph) ? fromParagraph : "";
+  }
+
+  const fromList = bodyHtml.match(/^(<ul\b[^>]*>\s*)([\s\S]*)$/i);
+  if (!fromList) {
+    return bodyHtml;
+  }
+  const [, ulOpen, listInner] = fromList;
+  const fromItem = stripConsumedBlock(
+    listInner,
+    preview,
+    /^(<li\b[^>]*>)(\s*)([\s\S]*)$/i,
+    /<\/li>/i
+  );
+  if (fromItem === null) {
+    return bodyHtml;
+  }
+  if (!htmlToText(fromItem)) {
+    return "";
+  }
+  const remainder = `${ulOpen}${fromItem}`;
+  return htmlToText(remainder.replace(/<\/ul>\s*$/i, "")) ? remainder : "";
 }
 
 function splitByHeading(html: string, tag: "h4" | "h5") {
@@ -325,25 +367,12 @@ function applyPageOptions(topics: GuideTopic[], slug: string): GuideTopic[] {
   }
 
   if (slug === "complicating-factors") {
-    return topics.map((topic) => {
-      const title = /^Daily Life Impacts$/i.test(topic.title)
+    return topics.map((topic) => ({
+      ...topic,
+      title: /^Daily Life Impacts$/i.test(topic.title)
         ? "Impact on Daily Life"
-        : topic.title.trim();
-
-      if (!topic.children?.length || !/^Treatment Complexity$/i.test(title)) {
-        return { ...topic, title };
-      }
-
-      return {
-        ...topic,
-        title,
-        children: topic.children.map((child) =>
-          /^Insight\/Awareness$/i.test(child.title)
-            ? { ...child, preview: "", static: true }
-            : child
-        ),
-      };
-    });
+        : topic.title.trim(),
+    }));
   }
 
   if (slug !== "system-constraints") {
