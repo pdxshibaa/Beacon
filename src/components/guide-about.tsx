@@ -27,7 +27,7 @@ export function GuideAbout() {
 
   return (
     <div className="space-y-5 text-base leading-relaxed text-foreground/90">
-      <p className="text-foreground/80">{paper.subtitle}</p>
+    {/*  <p className="text-foreground/80">{paper.subtitle}</p> */}
       <Html html={intro.leadHtml} />
       <div>
         <p className="mt-2">{intro.factorLead}</p>
