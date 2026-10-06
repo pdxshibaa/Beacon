@@ -62,7 +62,7 @@ export function GuideAbout() {
           href="/feedback"
           className="text-primary underline-offset-4 hover:underline"
         >
-          Help improve {site.name}
+          Help Improve {site.name}
         </Link>
       </p>
     </div>

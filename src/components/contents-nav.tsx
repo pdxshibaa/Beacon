@@ -35,7 +35,7 @@ export function ContentsNav({
             href="/about"
             className="block rounded-md px-2 py-1 leading-snug text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
-            About this guide
+            About This Guide
           </Link>
         </li>
         <li>
@@ -43,7 +43,7 @@ export function ContentsNav({
             href="/feedback"
             className="block rounded-md px-2 py-1 leading-snug text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
-            Help improve {site.name}
+            Help Improve {site.name}
           </Link>
         </li>
         {topicSections.map((section) => {

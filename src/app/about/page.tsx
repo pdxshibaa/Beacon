@@ -5,7 +5,7 @@ import { GuideAbout } from "@/components/guide-about";
 import { pageDescriptions } from "@/content/page-descriptions";
 
 export const metadata: Metadata = {
-  title: "About this guide",
+  title: "About This Guide",
   description: pageDescriptions.about,
 };
 
@@ -18,7 +18,7 @@ export default function AboutPage() {
         </Link>
       </p>
       <h1 className="mt-4 font-heading text-3xl tracking-tight text-foreground sm:text-4xl">
-        About this guide
+        About This Guide
       </h1>
       <div className="mt-8">
         <GuideAbout />
