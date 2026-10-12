@@ -9,11 +9,9 @@ export const site = {
   homeTitle: paper.subtitle.replace(/\.$/, ""),
   /** Homepage Google snippet. Edit in src/content/page-descriptions.ts. */
   description: pageDescriptions.home,
-  codeLicense: "website code is shared under the MIT license",
+  codeLicense: "Website code is shared under the MIT license.",
   contentLicense:
-    "website content is shared under Creative Commons (CC BY-NC 4.0)",
-  contentShare:
-    "Anyone can share or adapt the content for non-commercial purposes only.",
+    "Website content is shared under Creative Commons (CC BY-NC 4.0). Anyone can share or adapt the content for non-commercial purposes only.",
   /** Public address on the feedback page. Shown on the page and used for mailto. */
   feedbackEmail: "hello@beaconforfamilies.org",
   /** Google Form linked from the feedback page. */

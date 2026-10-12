@@ -61,7 +61,6 @@ export function SiteFooter() {
         <p>{paper.disclaimer}</p>
         <p>{site.codeLicense}</p>
         <p>{site.contentLicense}</p>
-        <p>{site.contentShare}</p>
       </div>
     </footer>
   );
