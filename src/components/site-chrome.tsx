@@ -58,6 +58,7 @@ export function SiteFooter() {
           </Link>
         </p>
         <p>{paper.draftNotice}</p>
+        <p>{paper.disclaimer}</p>
         <p>{site.codeLicense}</p>
         <p>{site.contentLicense}</p>
         <p>{site.contentShare}</p>

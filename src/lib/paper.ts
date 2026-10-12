@@ -16,6 +16,7 @@ export type Paper = {
   authors: string;
   year: string;
   draftNotice: string;
+  disclaimer: string;
   sections: PaperSection[];
 };
 
