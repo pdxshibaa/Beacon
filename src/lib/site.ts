@@ -1,12 +1,11 @@
 import { pageDescriptions } from "@/content/page-descriptions";
-import { paper } from "@/lib/paper";
 
 /** Licensing lines from the Beacon GitHub README. */
 export const site = {
   name: "Beacon for Families",
   url: "https://beaconforfamilies.org",
-  /** Homepage browser tab and Google result title. The guide byline. */
-  homeTitle: paper.subtitle.replace(/\.$/, ""),
+  /** Homepage browser tab and Google result title. Includes the site name, so the layout must not append it again. */
+  homeTitle: "Mental health crisis guide for families of college students, Beacon for Families",
   /** Homepage Google snippet. Edit in src/content/page-descriptions.ts. */
   description: pageDescriptions.home,
   codeLicense: "Website code is shared under the MIT license.",

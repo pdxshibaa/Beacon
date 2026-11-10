@@ -8,7 +8,7 @@
  * page; do not add new advice.
  */
 export const pageDescriptions = {
-  home: "A guide for parents and families supporting a college-aged young adult through a mental health crises, 911 and 988, hospitalization, HIPAA and FERPA, and limited engagement.",
+  home: "A guide for parents and families supporting a college-aged young adult through a mental health crisis, 911 and 988, hospitalization, HIPAA and FERPA, and limited engagement.",
   about:
     "This guide was written for parents and families of college-aged young adults (roughly ages 18–25) who want to learn how to respond to a mental health crisis.",
   search:
@@ -32,7 +32,7 @@ export const pageDescriptions = {
   "campus-resources":
     "Mental health resources on college campuses, including university police, counseling, and the Dean of Students office.",
   "off-campus-resources":
-    "Off-campus resources for young adults who do not live on a college campus, including 911 and 988.",
+    "Off-campus crisis resources for young adults who do not live on a college campus, including 911, 988, and local crisis lines.",
   "complicating-factors":
     "Clinical complexity and other factors that can make a mental health crisis harder to navigate. Knowing they exist may reduce the emotional toll.",
   "caregiver-strategies":
@@ -47,9 +47,24 @@ export const pageDescriptions = {
 
 export type PageDescriptionKey = keyof typeof pageDescriptions;
 
+/**
+ * Browser-tab and Google titles when the on-page heading should stay as it is.
+ * The layout adds " — Beacon for Families".
+ */
+export const pageTitles: Partial<Record<PageDescriptionKey, string>> = {
+  "off-campus-resources": "Off-Campus Crisis Support",
+};
+
 export function descriptionFor(key: string): string | undefined {
   if (key in pageDescriptions) {
     return pageDescriptions[key as PageDescriptionKey];
+  }
+  return undefined;
+}
+
+export function titleFor(key: string): string | undefined {
+  if (key in pageTitles) {
+    return pageTitles[key as PageDescriptionKey];
   }
   return undefined;
 }

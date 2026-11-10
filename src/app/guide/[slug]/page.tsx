@@ -17,7 +17,7 @@ import {
   getWarningSignsLayout,
   splitGuideTopics,
 } from "@/lib/guide-topics";
-import { descriptionFor } from "@/content/page-descriptions";
+import { descriptionFor, titleFor } from "@/content/page-descriptions";
 import { getNeighbors, getSection, pageDescription, paper } from "@/lib/paper";
 
 const SYSTEM_CONSTRAINTS_RELATED = [
@@ -54,7 +54,7 @@ export async function generateMetadata({
     return { title: "Not found" };
   }
   return {
-    title: section.title,
+    title: titleFor(section.slug) ?? section.title,
     description: descriptionFor(section.slug) ?? pageDescription(section.html),
   };
 }

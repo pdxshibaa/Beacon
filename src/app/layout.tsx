@@ -20,7 +20,7 @@ const sourceSerif = Source_Serif_4({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.homeTitle} — ${site.name}`,
+    default: site.homeTitle,
     template: `%s — ${site.name}`,
   },
   description: site.description,
