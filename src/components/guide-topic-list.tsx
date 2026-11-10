@@ -26,6 +26,30 @@ function TopicBanner({ topic }: { topic: GuideTopic }) {
   );
 }
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+/** First sentence is stored separately for collapsed cards. Stacked sections stay open, so put it back. */
+function htmlWithLead(preview: string, bodyHtml: string): string {
+  const lead = preview.trim();
+  if (!lead) {
+    return bodyHtml;
+  }
+  const escaped = escapeHtml(lead);
+  const trimmed = bodyHtml.trim();
+  if (!trimmed) {
+    return `<p>${escaped}</p>`;
+  }
+  if (/^<p\b[^>]*>/i.test(trimmed)) {
+    return trimmed.replace(/^(<p\b[^>]*>)\s*/i, `$1${escaped} `);
+  }
+  return `<p>${escaped}</p>\n${trimmed}`;
+}
+
 function TopicGlance({
   topic,
   spacious = false,
@@ -65,13 +89,15 @@ function TopicGlance({
               <h3 className="font-heading text-base font-semibold tracking-tight text-foreground sm:text-lg">
                 {markLimitedEngagement(child.title)}
               </h3>
-              {child.bodyHtml ? (
+              {child.preview || child.bodyHtml ? (
                 <div
                   className={cn(
                     "paper-body !mt-2 leading-relaxed [&_p:last-child]:mb-0 [&_li:last-child]:mb-0",
                     spacious ? "text-[1.0625rem] [&_li]:mb-2" : "text-sm"
                   )}
-                  dangerouslySetInnerHTML={{ __html: child.bodyHtml }}
+                  dangerouslySetInnerHTML={{
+                    __html: htmlWithLead(child.preview, child.bodyHtml),
+                  }}
                 />
               ) : null}
             </div>
