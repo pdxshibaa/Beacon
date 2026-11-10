@@ -49,10 +49,15 @@ export type PageDescriptionKey = keyof typeof pageDescriptions;
 
 /**
  * Browser-tab and Google titles when the on-page heading should stay as it is.
- * The layout adds " — Beacon for Families".
+ * A string is prefixed onto " — Beacon for Families". An absolute title is used as written.
  */
-export const pageTitles: Partial<Record<PageDescriptionKey, string>> = {
+export const pageTitles: Partial<
+  Record<PageDescriptionKey, string | { absolute: string }>
+> = {
   "off-campus-resources": "Off-Campus Crisis Support",
+  "system-constraints": {
+    absolute: "HIPAA & FERPA for Families During a College Mental Health Crisis",
+  },
 };
 
 export function descriptionFor(key: string): string | undefined {
@@ -62,7 +67,9 @@ export function descriptionFor(key: string): string | undefined {
   return undefined;
 }
 
-export function titleFor(key: string): string | undefined {
+export function titleFor(
+  key: string
+): string | { absolute: string } | undefined {
   if (key in pageTitles) {
     return pageTitles[key as PageDescriptionKey];
   }
