@@ -54,7 +54,9 @@ export type PageDescriptionKey = keyof typeof pageDescriptions;
 export const pageTitles: Partial<
   Record<PageDescriptionKey, string | { absolute: string }>
 > = {
-  "off-campus-resources": "Off-Campus Crisis Support",
+  "decision-tree": "Mental health crisis decision tree for families",
+  "off-campus-resources": "Off-campus crisis support for college students",
+  "complicating-factors": "Factors that complicate a mental health crisis",
   "system-constraints": {
     absolute: "HIPAA & FERPA for Families During a College Mental Health Crisis",
   },

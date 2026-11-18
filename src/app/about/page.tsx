@@ -5,7 +5,7 @@ import { GuideAbout } from "@/components/guide-about";
 import { pageDescriptions } from "@/content/page-descriptions";
 
 export const metadata: Metadata = {
-  title: "About This Guide",
+  title: "About this guide for families of college students",
   description: pageDescriptions.about,
 };
 

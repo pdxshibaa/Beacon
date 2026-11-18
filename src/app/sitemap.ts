@@ -15,9 +15,11 @@ function pageUrl(path: string): string {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["/", "/about/", "/feedback/", ...topicSections.map(
-    (section) => `/guide/${section.slug}/`
-  )];
+  const pages = [
+    "/",
+    "/about/",
+    ...topicSections.map((section) => `/guide/${section.slug}/`),
+  ];
 
   return pages.map((path) => ({ url: pageUrl(path) }));
 }

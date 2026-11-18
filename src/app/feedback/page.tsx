@@ -8,6 +8,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: { absolute: `Help improve ${site.name}` },
   description: pageDescriptions.feedback,
+  robots: { index: false, follow: true },
 };
 
 const NOTES = [
